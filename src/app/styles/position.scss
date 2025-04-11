@@ -1,0 +1,167 @@
+// width
+@for $i from 1 through 10 {
+  .w-#{$i} {
+    width: 10% * $i;
+  }
+}
+
+// height
+@for $i from 1 through 10 {
+  .h-#{$i} {
+    height: 10% * $i;
+  }
+}
+
+// gap (flex only)
+@for $i from 1 through 20 {
+  .gap-#{$i} {
+    gap: $i * 2 + px;
+  }
+}
+
+@mixin indent($orientation, $rule) {
+  @for $i from 1 through 16 {
+    .#{$orientation}-#{$i} {
+      #{$rule}: $i * 2 + px;
+    }
+  }
+}
+
+// margin
+@include indent('mt', margin-top);
+@include indent('mr', margin-right);
+@include indent('mb', margin-bottom);
+@include indent('ml', margin-left);
+@include indent('ma', margin);
+
+.m-auto {
+  margin: 0 auto;
+}
+
+// padding
+@include indent('pt', padding-top);
+@include indent('pr', padding-right);
+@include indent('pb', padding-bottom);
+@include indent('pl', padding-left);
+@include indent('pa', padding);
+
+.w {
+  &-full {
+    width: 100%;
+  }
+}
+
+.h {
+  &-full {
+    height: 100%;
+  }
+}
+
+.d {
+  &-block {
+    display: block;
+  }
+
+  &-flex {
+    display: flex;
+  }
+}
+
+.flex {
+  &-column {
+    flex-direction: column;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+
+  &-nowrap {
+    flex-wrap: nowrap;
+  }
+}
+
+.justify {
+  &-center {
+    justify-content: center;
+  }
+
+  &-end {
+    justify-content: flex-end;
+  }
+
+  &-between {
+    justify-content: space-between;
+  }
+
+  &-around {
+    justify-content: space-around;
+  }
+}
+
+.items {
+  &-center {
+    align-items: center;
+  }
+
+  &-start {
+    align-items: start;
+  }
+
+  &-end {
+    align-items: end;
+  }
+}
+
+.overflow {
+  &-auto {
+    overflow: auto;
+  }
+
+  &-hidden {
+    overflow: hidden;
+  }
+
+  &-x {
+    &-auto {
+      overflow-x: auto;
+    }
+
+    &-hidden {
+      overflow-x: hidden;
+    }
+  }
+
+  &-y {
+    &-auto {
+      overflow-y: auto;
+    }
+    &-hidden {
+      overflow-y: hidden;
+    }
+  }
+}
+
+.position {
+  &-absolute {
+    position: absolute;
+  }
+
+  &-relative {
+    position: relative;
+  }
+}
+
+.rotate {
+  &-quarter-past {
+    transform: rotate(90deg);
+  }
+
+  &-half {
+    transform: rotate(180deg);
+  }
+
+  &-quarter-to {
+    transform: rotate(270deg);
+  }
+}

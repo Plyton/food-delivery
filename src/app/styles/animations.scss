@@ -1,0 +1,38 @@
+@mixin infinity-spin() {
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  border: 3px solid var(--color-base-background);
+  border-radius: 100%;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.df-spinner {
+  @include infinity-spin;
+  border: 5px solid var(--color-base-background);
+  border-bottom: 5px solid var(--color-accent);
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.df-animation-spin {
+  @include infinity-spin;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

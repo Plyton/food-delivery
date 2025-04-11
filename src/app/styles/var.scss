@@ -1,0 +1,31 @@
+// colors
+:root {
+  --color-surface: #123b8c;
+  --color-surface-container-low: #0f0f11;
+  --color-on-surface: #ffffff;
+  --color-on-surface-dim: #676767;
+  --color-on-surface-bright: #9ea2aa;
+
+  --color-primary: #fbd13e;
+  --color-on-primary: #000000;
+  --color-on-primary-variant: #dbb325;
+  --color-primary-disadled: #6d6d6d;
+  --color-on-primary-disadled: #707070;
+
+  --color-error: #b70000;
+}
+
+:root {
+  --index-0: 0; /* наползающие (общий поток) */
+  --index-1: 1; /* наползающие (общий поток) */
+  --index-2: 2; /* наползающие (общий поток) */
+  --index-3: 3; /* маски */
+  --index-4: 4; /*  сайдбары */
+  --index-5: 5; /* модальные окна */
+  --index-6: 6; /* перекрывающие (глобальные) */
+}
+
+// breakpoints
+:root {
+  --breakpoint-md: 1440px;
+}

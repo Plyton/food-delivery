@@ -1,0 +1,124 @@
+@mixin typo($font-size, $font-weight: 500) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+@mixin icon($size) {
+  width: $size;
+  height: $size;
+  min-width: $size;
+  min-height: $size;
+  max-width: $size;
+  max-height: $size;
+}
+
+.text {
+  &-xs {
+    @include typo(12px);
+
+    &-bold {
+      @include typo(12px, 700);
+    }
+  }
+
+  &-sm {
+    @include typo(14px);
+
+    &-bold {
+      @include typo(14px, 700);
+    }
+  }
+
+  &-md {
+    @include typo(16px);
+
+    &-bold {
+      @include typo(16px, 700);
+    }
+  }
+
+  &-lg {
+    @include typo(18px);
+
+    &-bold {
+      @include typo(18px, 700);
+    }
+  }
+
+  &-xl {
+    @include typo(20px);
+
+    &-bold {
+      @include typo(20px, 700);
+    }
+  }
+
+  &-2xl {
+    @include typo(24px);
+
+    &-bold {
+      @include typo(24px, 700);
+    }
+  }
+
+  &-3xl {
+    @include typo(28px);
+
+    &-bold {
+      @include typo(28px, 700);
+    }
+  }
+
+  &-4xl {
+    @include typo(32px);
+
+    &-bold {
+      @include typo(32px, 700);
+    }
+  }
+
+  &-5xl {
+    @include typo(36px);
+
+    &-bold {
+      @include typo(36px, 700);
+    }
+  }
+
+  &-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-clamped-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.icon {
+  &-xs {
+    @include icon(16px);
+  }
+  &-sm {
+    @include icon(18px);
+  }
+
+  &-md {
+    @include icon(20px);
+  }
+
+  &-lg {
+    @include icon(24px);
+  }
+
+  &-xl {
+    @include icon(30px);
+  }
+}
