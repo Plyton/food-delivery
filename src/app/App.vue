@@ -10,8 +10,8 @@ import { RouterLink, RouterView } from 'vue-router';
         <RouterLink to="/">
           Home
         </RouterLink>
-        <RouterLink to="/about">
-          About
+        <RouterLink to="/test">
+          Test
         </RouterLink>
       </nav>
     </div>
@@ -20,6 +20,6 @@ import { RouterLink, RouterView } from 'vue-router';
   <RouterView />
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './styles/index.scss';
 </style>
