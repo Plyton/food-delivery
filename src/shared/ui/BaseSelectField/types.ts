@@ -7,6 +7,8 @@ interface Props {
   optionId: string | number;
   optionName: string;
   multiple: boolean;
+  remotely: boolean,
+  searchFn: (value: string) => Promise<Option[]>;
 }
 
 export type SelectFieldProps = Partial<Props>;

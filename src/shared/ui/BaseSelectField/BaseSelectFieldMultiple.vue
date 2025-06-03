@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { Option, SelectFieldProps } from './types.ts';
-import type { FieldEmits, FieldProps } from '@/shared/types/FieldType.ts';
+import type { ChipEmits } from '../BaseChip/types.ts';
+import type { FieldEmits, FieldProps } from '../BaseField/types.ts';
 import { BaseButton, BaseChip } from '@/shared/ui';
-import type { ChipEmits } from '@/shared/ui/BaseChip/types.ts';
-import BaseField from '@/shared/ui/BaseField/BaseField.vue';
+import BaseField from '../BaseField/BaseField.vue';
 
 withDefaults(
   defineProps<
     FieldProps &
-      Omit<Required<SelectFieldProps>, 'options'> & {
+      Pick<Required<SelectFieldProps>, 'optionId' | 'optionName'> & {
         modelMultiple?: Option[];
       }
   >(),
@@ -17,10 +17,15 @@ withDefaults(
     modelMultiple: () => [],
   },
 );
-defineEmits<FieldEmits & ChipEmits>();
+const emit = defineEmits<FieldEmits & ChipEmits>();
 
 const modelValue = defineModel<string>('search');
 const selectMultipleWrapperRef = ref<HTMLDivElement | null>(null);
+
+const handleInput = ($event: string): void => {
+  modelValue.value = $event;
+  emit('input', modelValue.value);
+};
 
 defineExpose({
   selectMultipleWrapperRef,
@@ -36,44 +41,55 @@ defineExpose({
     >
       {{ label }}
     </label>
-    <div
-      ref="selectMultipleWrapperRef"
-      class="df-select-multiple__wrapper disabled"
-      @click="$emit('focus', $event)"
-    >
+    <div class="df-select-multiple__container">
       <div
-        class="d-flex df-select-multiple__content-wrapper w-full"
-        :class="{ invalid: errorMessage, disabled }"
+        ref="selectMultipleWrapperRef"
+        class="df-select-multiple__wrapper"
+        :content="{disabled}"
+        @click="$emit('focus', $event)"
       >
-        <div class="df-select-multiple__content">
-          <transition-group name="scale">
-            <BaseChip
-              v-for="option in modelMultiple"
-              :key="option[optionId]"
-              :text="option[optionName]"
-              :value="option[optionId]"
-              :disabled="disabled"
-              closable
-              @update:close="$emit('update:close', $event)"
-            />
-          </transition-group>
-          <BaseButton type="icon">
-            <template #prepend>
-              <slot name="prepend" />
-            </template>
-          </BaseButton>
+        <div class="df-select-multiple d-flex items-center">
+          <slot name="prepend" />
         </div>
+
+        <div
+          class="d-flex df-select-multiple__content-wrapper w-full"
+          :class="{ invalid: errorMessage, disabled }"
+        >
+          <div class="df-select-multiple__content">
+            <transition-group name="scale">
+              <BaseChip
+                v-for="option in modelMultiple"
+                :key="option[optionId]"
+                :text="option[optionName]"
+                :value="option[optionId]"
+                :disabled="disabled"
+                closable
+                @update:close="$emit('update:close', $event)"
+              />
+            </transition-group>
+          </div>
+
+          <div class="df-select-multiple__append d-flex items-center">
+            <BaseButton type="icon">
+              <template #prepend>
+                <slot name="append" />
+              </template>
+            </BaseButton>
+          </div>
+        </div>
+        <BaseField
+          v-model="modelValue"
+          @input="handleInput"
+        />
       </div>
-      <BaseField
-        v-model="modelValue"
-        @input="modelValue = $event"
-      />
-    </div>
-    <div
-      class="df-select-multiple__error text-xs"
-      :class="{ label }"
-    >
-      {{ errorMessage }}
+      <div
+        class="df-select-multiple__error text-xs"
+        :class="{ label }"
+      >
+        {{ errorMessage }}
+      </div>
+      <slot name="list" />
     </div>
   </div>
 </template>
@@ -81,15 +97,18 @@ defineExpose({
 <style scoped lang="scss">
 .df-select-multiple {
   display: flex;
-  align-items: center;
-  padding-bottom: 20px;
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    width: 100%;
+  }
   &__wrapper {
     position: relative;
     width: 100%;
-    height: 45px;
+    height: 42px;
     overflow-y: auto;
-    border: 2px solid transparent;
-    margin: 0 -2px;
     &.disabled {
       overflow-y: hidden;
     }
@@ -108,6 +127,8 @@ defineExpose({
       border: 2px solid transparent;
       transition: border-color ease-in-out 0.2s;
       height: 42px;
+      overflow-y: auto;
+      padding: 5px 0;
 
       &:not(.disabled):hover {
         border: 2px solid var(--color-on-primary-variant);
@@ -150,18 +171,23 @@ defineExpose({
     }
   }
 
+  &__append {
+    padding-right: 5px;
+  }
+
+  &__prepend {
+    padding-left: 5px;
+  }
+
   &__error {
     position: absolute;
     top: 41px;
     color: var(--color-error);
-    &.label {
-      left: 117px;
-    }
   }
 }
 
 :deep {
-  .df-field {
+  .df-field-container {
     padding: 0;
     &__content {
       height: 39px;

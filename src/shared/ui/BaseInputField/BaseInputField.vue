@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FieldProps, FieldEmits } from '../../types/FieldType.ts';
+import type { FieldProps, FieldEmits } from '../BaseField/types.ts';
 import BaseField from '../BaseField/BaseField.vue';
 
 const props = withDefaults(defineProps<FieldProps>(), {

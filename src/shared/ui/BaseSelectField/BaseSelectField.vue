@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { onClickOutside } from '@vueuse/core';
+import { onClickOutside, useDebounceFn } from '@vueuse/core';
 import { ref, computed, useTemplateRef, type ComponentPublicInstance, watch } from 'vue';
 import type { Option, SelectFieldProps } from './types.ts';
-import type { FieldEmits, FieldProps } from '@/shared/types/FieldType.ts';
+import type { FieldEmits, FieldProps } from '../BaseField/types.ts';
+import { useMultipleSelect } from '@/shared/lib/hooks/useMultipleSelect.ts';
 import { IconArrow, BaseButton, IconClose } from '@/shared/ui';
-import BaseField from '@/shared/ui/BaseField/BaseField.vue';
 import BaseSelectFieldMultiple from './BaseSelectFieldMultiple.vue';
+import BaseField from '../BaseField/BaseField.vue';
 
 const props = withDefaults(defineProps<FieldProps & SelectFieldProps>(), {
   optionId: 'id',
   optionName: 'name',
   options: () => [],
+  searchFn: () => Promise.resolve([]),
 });
 
 const emit = defineEmits<
@@ -22,17 +24,32 @@ const emit = defineEmits<
 const isExpand = ref<boolean>(false);
 const inputValue = ref<string>('');
 const localValue = ref<string>('');
+const remotelyOptions = ref<Option[]>([]);
+const listTarget = ref<HTMLDivElement | null>(null);
 
 const selectRef = useTemplateRef<ComponentPublicInstance>('select');
 
 const modelValue = defineModel<Option>();
 const modelMultiple = defineModel<Option[]>('multiple-select', { default: [] });
 
+const {
+  checkMultipleSelect,
+  handleMultipleSelect,
+  handleUpdateClose
+}: ReturnType<typeof useMultipleSelect> = useMultipleSelect(
+  props,
+  emit as (event: string, ...args: unknown[]) => void,
+  selectRef,
+  modelMultiple
+);
+
 const localOptions = computed<Option[]>(() => {
-  return props.options.filter((option: Option) => {
-    const optionName: keyof Option = option[props.optionName];
-    return optionName?.toString().toLowerCase().indexOf(inputValue.value.toLowerCase()) >= 0;
-  });
+  return !props.remotely
+    ? props.options.filter((option: Option) => {
+      const optionName: keyof Option = option[props.optionName];
+      return optionName?.toString().toLowerCase().indexOf(inputValue.value.toLowerCase()) >= 0;
+    })
+    : remotelyOptions.value;
 });
 
 watch(
@@ -45,77 +62,52 @@ watch(
   { immediate: true, once: true },
 );
 
-function checkSelect(option: Option) {
+function checkSelect(option: Option): boolean {
   if (!modelValue.value || typeof modelValue.value !== 'object') return false;
   return modelValue.value[props.optionId] === option[props.optionId];
 }
 
-function checkMultipleSelect(option: Option) {
-  if (!modelMultiple.value.length) return false;
-  return modelMultiple.value.some((val: Option) => val[props.optionId] === option[props.optionId]);
-}
-
-function handleUpdateClose(id: string | number) {
-  if (props.disabled) return;
-  const ind = modelMultiple.value.findIndex((option) => option[props.optionId] === id);
-  modelMultiple.value.splice(ind, 1);
-}
-
-function handleSelect(option: Option) {
+function handleSelect(option: Option): void {
   modelValue.value = option;
   localValue.value = option[props.optionName].toString();
   emit('select', option[props.optionId]);
 }
 
-function handleMultipleSelect(option: Option) {
-  const findOption = modelMultiple.value.find(
-    (val) => val[props.optionId] === option[props.optionId],
-  );
-  if (!findOption) modelMultiple.value.push(option);
-  const selectContainerEl = selectRef.value as ComponentPublicInstance<
-    typeof BaseSelectFieldMultiple
-  >;
-  selectContainerEl.selectMultipleWrapperRef.scrollTo({ top: 0, behavior: 'smooth' });
-  emit(
-    'select',
-    modelMultiple.value.map((val) => val[props.optionId]),
-  );
-}
-
-function handleInput(evt: string) {
-  inputValue.value = evt;
-  inputValue.value = evt;
+async function handleInput(evt: string): Promise<void> {
+  if (!props.multiple) inputValue.value = evt;
   if (!inputValue.value) modelValue.value = undefined;
+  if (props.remotely) remotelyOptions.value = await debouncedGetDataRemotely(evt);
   emit('input', evt);
 }
 
-function handleFocus() {
+function handleFocus(): void {
   if (!props.disabled) isExpand.value = true;
 }
 
-function clearValue() {
+function clearValue(): void {
   inputValue.value = '';
   localValue.value = '';
   modelValue.value = undefined;
 }
 
-function syncLocalFromModel() {
+function syncLocalFromModel(): void {
+  isExpand.value = false;
   inputValue.value = '';
-  localValue.value =
-    typeof modelValue.value === 'object' && localValue.value && !props.disabled
+  localValue.value = typeof modelValue.value === 'object' && localValue.value && !props.disabled
       ? modelValue.value[props.optionName].toString()
       : '';
 }
 
-function expand() {
+function expand(): void {
   if (!props.disabled) {
     isExpand.value = !isExpand.value;
     syncLocalFromModel();
   }
 }
 
+const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
+
 onClickOutside(selectRef, () => {
-  isExpand.value = false;
   syncLocalFromModel();
 });
 </script>
@@ -133,9 +125,19 @@ onClickOutside(selectRef, () => {
       @update:close="handleUpdateClose"
     >
       <template #prepend>
+        <slot name="prepend" />
+      </template>
+      <template #append>
+        <slot name="append" />
         <IconArrow
           :class="['df-select__icon', { rotate: isExpand, multiple, disabled }]"
           @click.stop="expand"
+        />
+      </template>
+      <template #list>
+        <div
+          ref="listTarget"
+          class="list"
         />
       </template>
     </BaseSelectFieldMultiple>
@@ -148,7 +150,11 @@ onClickOutside(selectRef, () => {
       @input="handleInput"
       @focus="handleFocus"
     >
+      <template #prepend>
+        <slot name="prepend" />
+      </template>
       <template #append>
+        <slot name="append" />
         <BaseButton
           type="icon"
           :disabled="disabled"
@@ -163,37 +169,48 @@ onClickOutside(selectRef, () => {
           </template>
         </BaseButton>
       </template>
+      <template #list>
+        <div
+          ref="listTarget"
+          class="list"
+        />
+      </template>
     </BaseField>
 
-    <transition name="fade">
-      <div
-        v-if="isExpand"
-        :class="['df-select-list', { label, invalid: errorMessage }]"
-      >
+    <teleport
+      v-if="listTarget"
+      :to="listTarget"
+    >
+      <transition name="fade">
         <div
-          v-for="option in localOptions"
-          :key="option[optionId]"
-          :class="{
-            'df-select__option': true,
-            selected: multiple ? checkMultipleSelect(option) : checkSelect(option),
-          }"
-          @click.stop.prevent="!multiple ? handleSelect(option) : handleMultipleSelect(option)"
+          v-if="isExpand"
+          :class="['df-select-list', { invalid: errorMessage }]"
         >
-          <slot
-            name="option"
-            :value="option"
+          <div
+            v-for="option in localOptions"
+            :key="option[optionId]"
+            :class="{
+              'df-select__option': true,
+              selected: multiple ? checkMultipleSelect(option) : checkSelect(option),
+            }"
+            @click.stop.prevent="!multiple ? handleSelect(option) : handleMultipleSelect(option)"
           >
-            {{ option[optionName] }}
-          </slot>
+            <slot
+              name="option"
+              :value="option"
+            >
+              {{ option[optionName] }}
+            </slot>
+          </div>
+          <div
+            v-if="localOptions.length === 0"
+            class="df-select__empty pa-8"
+          >
+            Нет результатов
+          </div>
         </div>
-        <div
-          v-if="localOptions.length === 0"
-          class="df-select__empty pa-8"
-        >
-          Нет результатов
-        </div>
-      </div>
-    </transition>
+      </transition>
+    </teleport>
   </div>
 </template>
 
@@ -211,9 +228,6 @@ onClickOutside(selectRef, () => {
     z-index: var(--index-2);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
     max-height: 250px;
-    &.label {
-      margin-left: 117px;
-    }
     &.invalid {
       border: 2px solid var(--color-error);
     }
@@ -230,6 +244,9 @@ onClickOutside(selectRef, () => {
     &.selected {
       background-color: var(--color-on-primary-variant);
       color: var(--color-on-primary);
+      &:hover {
+        background-color: var(--color-primary);
+      }
     }
   }
 
