@@ -110,6 +110,10 @@ $button_configuration: (
   padding: 10px 18px;
   box-shadow: 0 10px 31px 0 rgba(15, 15, 17, 0.2);
   transition: 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 
   &__text {
     text-transform: uppercase;

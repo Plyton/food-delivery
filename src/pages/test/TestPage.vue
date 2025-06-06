@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BaseButton, BaseInputField, BaseSelectField } from '@/shared/ui';
+import { BaseButton, BaseRadio, BaseInputField, BaseSelectField } from '@/shared/ui';
 // import IconClose from '@/shared/ui/Icons/IconClose.vue';
 
 const text = ref('sasd');
+const checkbox1 = ref();
 const select = ref([]);
 const options = ref([
   { id: 1, name: 'food' },
@@ -64,6 +65,20 @@ const options = ref([
     <BaseButton disabled>
       кнопка
     </BaseButton>
+
+    <BaseRadio
+      v-model="checkbox1"
+      value="checkbox1"
+      class="mt-5"
+      label="test"
+      disabled
+    />
+    <BaseRadio
+      v-model="checkbox1"
+      value="checkbox2"
+      class="mt-5"
+      label="test"
+    />
   </div>
 </template>
 

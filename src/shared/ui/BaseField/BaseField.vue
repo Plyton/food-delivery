@@ -150,6 +150,7 @@ function clearValue(): void {
       -moz-osx-font-smoothing: grayscale;
       font: 500 14px/21px 'Material Design Icons';
       color: var(--color-primary);
+      padding-left: 2px;
     }
   }
 
