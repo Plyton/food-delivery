@@ -30,6 +30,7 @@ const listTarget = ref<HTMLDivElement | null>(null);
 const selectRef = useTemplateRef<ComponentPublicInstance>('select');
 
 const modelValue = defineModel<Option>();
+// для v-model:multiple-select обязательно передать массив и использовать multiple prop
 const modelMultiple = defineModel<Option[]>('multiple-select', { default: [] });
 
 const {
@@ -91,7 +92,6 @@ function clearValue(): void {
 }
 
 function syncLocalFromModel(): void {
-  isExpand.value = false;
   inputValue.value = '';
   localValue.value = typeof modelValue.value === 'object' && localValue.value && !props.disabled
       ? modelValue.value[props.optionName].toString()
@@ -108,6 +108,7 @@ function expand(): void {
 const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
 
 onClickOutside(selectRef, () => {
+  isExpand.value = false;
   syncLocalFromModel();
 });
 </script>

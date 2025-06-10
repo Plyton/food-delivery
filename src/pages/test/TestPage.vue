@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BaseButton, BaseRadio, BaseInputField, BaseSelectField } from '@/shared/ui';
+import { BaseButton, BaseRadio, BaseInputField, BaseSelectField, BaseCounter } from '@/shared/ui';
 // import IconClose from '@/shared/ui/Icons/IconClose.vue';
 
 const text = ref('sasd');
+const count = ref(-1);
 const checkbox1 = ref();
-const select = ref([]);
+const select = ref([{ id: 1, name: 'food' }]);
 const options = ref([
   { id: 1, name: 'food' },
   { id: 2, name: 'burger' },
@@ -52,7 +53,6 @@ const options = ref([
       v-model.uppercase="text"
       required
       label="Text"
-      error-message="error"
     />
 
     <BaseSelectField
@@ -60,7 +60,6 @@ const options = ref([
       multiple
       :options="options"
       label="Text"
-      error-message="error"
     />
     <BaseButton disabled>
       кнопка
@@ -71,14 +70,14 @@ const options = ref([
       value="checkbox1"
       class="mt-5"
       label="test"
-      disabled
     />
     <BaseRadio
       v-model="checkbox1"
       value="checkbox2"
-      class="mt-5"
+      class="mt-5 mb-10"
       label="test"
     />
+    <BaseCounter v-model="count" />
   </div>
 </template>
 

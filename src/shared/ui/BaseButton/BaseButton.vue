@@ -132,12 +132,10 @@ $button_configuration: (
     border: none;
     box-shadow: none;
     background-color: transparent;
-    &:deep(svg) {
-      transition: filter 0.2s;
-      &:hover {
-        filter: brightness(150%);
-        -webkit-filter: brightness(150%);
-        -moz-filter: brightness(150%);
+    &:hover {
+      :deep(svg) {
+        transition: fill 0.2s;
+        fill: var(--color-on-primary-variant);
       }
     }
   }

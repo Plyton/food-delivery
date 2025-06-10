@@ -3,15 +3,14 @@
     width="13.000000"
     height="8.000000"
     viewBox="0 0 13 8"
-    fill="none"
+    fill="#09234E"
+    fill-opacity="1.000000"
+    fill-rule="evenodd"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       id="Vector"
       d="M6.5 4.64L1.72 0L0 1.67L6.49 8L6.5 7.99L6.5 8L13 1.67L11.27 0L6.5 4.64Z"
-      fill="#09234E"
-      fill-opacity="1.000000"
-      fill-rule="evenodd"
     />
   </svg>
 </template>

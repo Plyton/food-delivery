@@ -109,6 +109,8 @@ defineExpose({
     width: 100%;
     height: 42px;
     overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE и Edge */
     &.disabled {
       overflow-y: hidden;
     }
