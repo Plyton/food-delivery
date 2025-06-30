@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ButtonEmits, ButtonProps } from './types.ts';
+import { IconArrowLeft, IconArrowRight } from '@/shared/ui';
 
 withDefaults(defineProps<ButtonProps>(), {
   type: 'default',
@@ -18,6 +19,7 @@ function handleClick(evt: Event): void {
       default: type === 'default',
       outline: type === 'outline',
       icon: type === 'icon',
+      'arrow': type === 'arrow-right' || type === 'arrow-left',
       'icon-fill': type === 'icon-fill',
     }"
     :disabled="disabled"
@@ -26,13 +28,15 @@ function handleClick(evt: Event): void {
   >
     <span class="df-button__content d-flex items-center">
       <slot name="prepend" />
+      <IconArrowLeft v-if="type === 'arrow-left'" />
       <span
-        v-if="$slots.default"
+        v-if="$slots.default && !(type === 'arrow-right' || type === 'arrow-left')"
         class="df-button__text text-sm-bold w-full"
       >
         <slot />
       </span>
       <slot name="append" />
+      <IconArrowRight v-if="type === 'arrow-right'" />
     </span>
   </button>
 </template>
@@ -57,7 +61,11 @@ $button_configuration: (
   // icon-fill
   button_icon-fill--background-color_normal: var(--color-primary),
   button_icon-fill--background-color_hover: var(--color-on-primary-variant),
-  button_icon-fill--background-color_active: var(--color-on-primary)
+  button_icon-fill--background-color_active: var(--color-on-primary),
+  // arrow
+  button_arrow--background-color_normal: transparent,
+  button_arrow--border_normal: 1px solid var(--color-surface-border),
+  button_arrow--border_hover: 1px solid var(--color-on-surface),
 );
 
 @mixin setButtonValue($key) {
@@ -136,6 +144,20 @@ $button_configuration: (
       :deep(svg) {
         transition: fill 0.2s;
         fill: var(--color-on-primary-variant);
+      }
+    }
+  }
+
+  &.arrow {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    @include setButtonValue(button_arrow);
+
+    &:hover {
+      :deep(svg) {
+        transition: fill 0.2s;
+        fill: var(--color-on-surface);
       }
     }
   }

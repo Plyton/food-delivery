@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BaseButton, BaseRadio, BaseInputField, BaseSelectField, BaseCounter } from '@/shared/ui';
+import {
+  BaseButton,
+  BaseRadio,
+  BaseInputField,
+  BaseSelectField,
+  BaseCounter,
+  BaseTextareaField
+} from '@/shared/ui';
 // import IconClose from '@/shared/ui/Icons/IconClose.vue';
 
 const text = ref('sasd');
+const textarea = ref();
 const count = ref(-1);
 const checkbox1 = ref();
 const select = ref([{ id: 1, name: 'food' }]);
@@ -61,7 +69,9 @@ const options = ref([
       :options="options"
       label="Text"
     />
-    <BaseButton disabled>
+    <BaseButton
+      type="arrow-right"
+    >
       кнопка
     </BaseButton>
 
@@ -78,6 +88,11 @@ const options = ref([
       label="test"
     />
     <BaseCounter v-model="count" />
+    <BaseTextareaField
+      v-model="textarea"
+      label="Textarea"
+      maxlength="20"
+    />
   </div>
 </template>
 

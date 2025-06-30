@@ -33,7 +33,7 @@ function decrement(): void {
     </div>
 
     <div class="df-counter__count text-sm">
-      {{ modelValue }}
+      {{ modelValue }} шт
     </div>
 
     <div class="df-counter__box-bottom">

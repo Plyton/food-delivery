@@ -27,6 +27,9 @@ function handleChange(value: string): void {
     <template #prepend>
       <slot name="prepend" />
     </template>
+    <template #default>
+      <slot />
+    </template>
     <template #append>
       <slot name="append" />
     </template>
