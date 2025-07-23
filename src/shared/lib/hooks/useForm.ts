@@ -1,20 +1,22 @@
-import { type Ref, ref, type UnwrapRef } from 'vue';
+import { type Ref, reactive, ref } from 'vue';
 
-export function useForm<T>(fields: T): {
-  fields: Ref<UnwrapRef<T>>,
+export function useForm<T extends Record<string, unknown>>(fields: T): {
+  fields: T,
   isLoading: Ref<boolean>,
-  submit: Function,
+  submit: (submitter: (formData: T) => Promise<unknown>) => Promise<unknown>,
 } {
-  const formFields = ref<T>(fields);
+  const formFields = reactive(fields) as T;
 
   const isLoading = ref<boolean>(false);
 
-  function submit(submitter: (formData: T) => Promise<any>) {
+  async function submit(submitter: (formData: T) => Promise<unknown>): Promise<unknown> {
     isLoading.value = true;
 
-    submitter(formFields.value as T).finally(() => {
+    try {
+      return await submitter(formFields);
+    } finally {
       isLoading.value = false;
-    });
+    }
   }
 
   return {

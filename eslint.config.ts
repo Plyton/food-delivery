@@ -5,11 +5,6 @@ import importPlugin from 'eslint-plugin-import';
 import pluginOxlint from 'eslint-plugin-oxlint';
 import pluginVue from 'eslint-plugin-vue';
 
-// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
-// import { configureVueProject } from '@vue/eslint-config-typescript'
-// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
-// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
-
 export default defineConfigWithVueTs(
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
   pluginVue.configs['flat/recommended'],
@@ -38,7 +33,7 @@ export default defineConfigWithVueTs(
             "builtin",    // встроенные модули Node.js (fs, path и т.д.)
             "external",   // внешние зависимости из node_modules
             "internal",   // внутренние алиасы
-            "index",      // index.ts/tsx файлы
+            "index",      // checkObject.ts/tsx файлы
             "object",     // импорты через объект (редко)
             "type"        // типы (если используете TypeScript)
           ],
