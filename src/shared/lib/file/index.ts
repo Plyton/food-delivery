@@ -1,2 +1,2 @@
-export * from './base64';
-export * from './download';
+export * from './base64.ts';
+export * from './download.ts';

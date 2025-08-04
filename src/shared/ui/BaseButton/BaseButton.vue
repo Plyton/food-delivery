@@ -1,11 +1,20 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { ButtonEmits, ButtonProps } from './types.ts';
 import { IconArrowLeft, IconArrowRight } from '@/shared/ui';
 
-withDefaults(defineProps<ButtonProps>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'default',
 });
 const emit = defineEmits<ButtonEmits>();
+
+const buttonClass = computed(() => ({
+  default: props.type === 'default',
+  outline: props.type === 'outline',
+  icon: props.type === 'icon',
+  arrow: ['arrow-left', 'arrow-right'].includes(props.type),
+  'icon-fill': props.type === 'icon-fill',
+}));
 
 function handleClick(evt: Event): void {
   emit('click', evt);
@@ -15,13 +24,7 @@ function handleClick(evt: Event): void {
 <template>
   <button
     class="df-button"
-    :class="{
-      default: type === 'default',
-      outline: type === 'outline',
-      icon: type === 'icon',
-      'arrow': type === 'arrow-right' || type === 'arrow-left',
-      'icon-fill': type === 'icon-fill',
-    }"
+    :class="buttonClass"
     :disabled="disabled"
     type="button"
     @click="handleClick"

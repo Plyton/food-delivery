@@ -7,15 +7,32 @@
 @use './transitions.scss';
 
 #app {
+  position: relative;
   width: 100%;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
   background-color: var(--color-surface);
-}
-
-#app {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+        ellipse at left center, /* ← смещаем центр влево */
+        rgba(0, 0, 0, 0) 30%, /* ← центр светлый */
+        rgba(0, 0, 0, 0.8) 100% /* → затемнение к правому краю */
+    );
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 input,

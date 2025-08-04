@@ -14,7 +14,7 @@ const text = ref('sasd');
 const textarea = ref();
 const count = ref(-1);
 const checkbox1 = ref();
-const select = ref([{ id: 1, name: 'food' }]);
+const select = ref();
 const options = ref([
   { id: 1, name: 'food' },
   { id: 2, name: 'burger' },
@@ -64,8 +64,7 @@ const options = ref([
     />
 
     <BaseSelectField
-      v-model:multiple-select="select"
-      multiple
+      v-model="select"
       :options="options"
       label="Text"
     />
