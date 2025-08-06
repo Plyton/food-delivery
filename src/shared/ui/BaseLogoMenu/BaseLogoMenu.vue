@@ -1,10 +1,14 @@
+<script lang="ts" setup>
+import { BRAND_NAME } from '../../const';
+</script>
+
 <template>
   <router-link
     :to="{ name: 'Home' }"
     class="app-menu-logo text-4xl-bold cursor-pointer"
-    aria-label="Go to homepage"
+    aria-label="Главная страница"
   >
-    FORBAS
+    {{ BRAND_NAME }}
   </router-link>
 </template>
 

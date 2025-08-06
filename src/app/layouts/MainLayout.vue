@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MainMenu } from '@/widget';
+import { MainMenu, FooterMenu } from '@/widget';
 
 defineOptions({
   name: 'MainLayout'
@@ -9,9 +9,5 @@ defineOptions({
 <template>
   <MainMenu />
   <main><slot /></main>
-  <footer>Футер</footer>
+  <FooterMenu />
 </template>
-
-<style scoped lang="scss">
-
-</style>

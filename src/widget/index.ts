@@ -1,1 +1,2 @@
-export { default as MainMenu } from '@/widget/main-menu/index.vue';
+export * from './footer-menu';
+export * from './main-menu';

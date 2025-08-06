@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core';
+import { ref, useTemplateRef } from 'vue';
+import type { MenuItem } from '@/features';
+import { IconArrow } from '@/shared/ui';
+
 defineOptions({
   name: "NavMenu",
 });
-import { onClickOutside } from '@vueuse/core';
-import { ref, useTemplateRef } from 'vue';
-import { menuItems } from '@/features/nav-menu/model/menuItems.ts';
-import { IconArrow } from '@/shared/ui';
+
+const props = withDefaults(defineProps<{
+  menu: MenuItem[];
+  appearance?: 'default' | 'footer';
+  areaLabel?: string;
+}>(), {
+  appearance: 'default',
+  areaLabel: '',
+  }
+);
 
 const openMenuId = ref<string | null>(null);
 const menuRef = useTemplateRef<HTMLElement>('menu');
@@ -26,11 +37,13 @@ onClickOutside(menuRef, () => {
 <template>
   <nav
     ref="menu"
-    class="app-menu-item"
+    class="app-menu-item text-sm"
+    :class="{'app-menu-item--footer': appearance === 'footer'}"
+    :aria-label="areaLabel"
   >
     <ul class="app-menu-item__list">
       <li
-        v-for="item in menuItems"
+        v-for="item in props.menu"
         :key="item.id"
         class="position-relative"
       >
@@ -38,7 +51,7 @@ onClickOutside(menuRef, () => {
         <RouterLink
           v-if="!item.submenu"
           :to="item.to"
-          class="app-menu-item__link"
+          class="app-menu-item__link app-menu-item__link--uppercase;"
         >
           {{ item.label }}
         </RouterLink>
@@ -116,7 +129,7 @@ onClickOutside(menuRef, () => {
 
   &__arrow {
     fill: var(--color-on-surface);
-    transition: transform 0.25s ease-in-out !important;
+    transition: transform 0.25s ease-in-out;
 
     &--open {
       transform: rotate(180deg);
@@ -143,6 +156,37 @@ onClickOutside(menuRef, () => {
     &-list {
       display: flex;
       flex-direction: column;
+    }
+  }
+  // --- FOOTER VARIANT ---
+  &--footer {
+    .app-menu-item__list {
+      gap: 30px;
+    }
+
+    .app-menu-item__link {
+      position: relative;
+      padding: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--color-on-surface);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover {
+        color: var(--color-on-surface);
+        &::after {
+          transform: scaleX(1);
+        }
+      }
     }
   }
 }

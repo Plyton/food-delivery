@@ -1,6 +1,6 @@
-import type { MenuItem } from '@/features/nav-menu/model/types.ts';
+import type { MenuItem } from './types.ts';
 
-export const menuItems: MenuItem[] = [
+export const mainMenu: MenuItem[] = [
   { id: '1', label: 'Акции 🔥', to: '/discounts' },
   {
     id: '2',

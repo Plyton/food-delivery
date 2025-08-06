@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 });
 const emit = defineEmits<ButtonEmits>();
 
-const buttonClass = computed(() => ({
+const buttonClass = computed<Record<string, boolean>>(() => ({
   default: props.type === 'default',
   outline: props.type === 'outline',
   icon: props.type === 'icon',

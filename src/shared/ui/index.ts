@@ -3,6 +3,7 @@ import BaseChip from './BaseChip/BaseChip.vue';
 import BaseCounter from './BaseCounter/BaseCounter.vue';
 import BaseExpansionPanel from './BaseExpansionPanel/BaseExpansionPanel.vue';
 import BaseInputField from './BaseInputField/BaseInputField.vue';
+import BaseLogoMenu from './BaseLogoMenu/BaseLogoMenu.vue';
 import BaseRadio from './BaseRadio/BaseRadio.vue';
 import BaseSelectField from './BaseSelectField/BaseSelectField.vue';
 import BaseTextareaField from './BaseTextareaField/BaseTextareaField.vue';
@@ -16,5 +17,6 @@ export {
   BaseRadio,
   BaseCounter,
   BaseTextareaField,
-  BaseExpansionPanel
+  BaseExpansionPanel,
+  BaseLogoMenu
 };
