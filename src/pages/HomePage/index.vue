@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import { HeroSection } from '@/widget';
+
 defineOptions({
   name: 'HomePage'
 });
 </script>
 
 <template>
-  <section>
-    Hello world!
-  </section>
+  <main>
+    <HeroSection />
+  </main>
 </template>
 
 <style scoped lang="scss">

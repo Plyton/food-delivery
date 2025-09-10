@@ -23,5 +23,6 @@ defineOptions({
 .app-menu {
   padding: 20px 40px;
   color: var(--color-on-surface);
+  z-index: var(--index-6) !important;
 }
 </style>

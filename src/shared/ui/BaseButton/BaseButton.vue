@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { ButtonEmits, ButtonProps } from './types.ts';
-import { IconArrowLeft, IconArrowRight } from '@/shared/ui';
+import { IconArrowLeft, IconArrowRight } from '../Icons';
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'default',

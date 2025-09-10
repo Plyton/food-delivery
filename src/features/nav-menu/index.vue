@@ -121,7 +121,6 @@ onClickOutside(menuRef, () => {
     &:hover {
       color: var(--color-primary);
       .app-menu-item__arrow {
-        transition: fill 0.3s ease;
         fill: var(--color-primary);
       }
     }
@@ -129,7 +128,7 @@ onClickOutside(menuRef, () => {
 
   &__arrow {
     fill: var(--color-on-surface);
-    transition: transform 0.25s ease-in-out;
+    transition: transform 0.3s ease, fill 0.3s ease;
 
     &--open {
       transform: rotate(180deg);

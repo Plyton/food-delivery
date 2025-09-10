@@ -32,6 +32,11 @@ section {
   display: block;
 }
 
+main {
+  height: 100vh;
+  overflow-y: auto;
+}
+
 html,
 body {
   height: 100%;
@@ -45,8 +50,31 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+input,
+select,
+textarea {
+  color: var(--color-text);
+  &::placeholder {
+    color: var(--color-on-surface-dim);
+  }
+}
+
 input::-ms-clear {
   display: none;
+}
+
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+
+  &-default {
+    cursor: default;
+  }
+
+  &-not-allowed {
+    cursor: not-allowed;
+  }
 }
 
 button {

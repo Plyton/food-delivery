@@ -8,6 +8,6 @@ defineOptions({
 
 <template>
   <MainMenu />
-  <main><slot /></main>
+  <slot />
   <FooterMenu />
 </template>

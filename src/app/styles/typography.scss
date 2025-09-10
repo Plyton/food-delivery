@@ -1,8 +1,8 @@
-@mixin typo($font-size, $font-weight: 500) {
+@mixin typo($font-size, $font-weight: 500, $line-height: 16px) {
   font-size: $font-size;
   font-weight: $font-weight;
   font-style: normal;
-  line-height: 16px;
+  line-height: $line-height;
   letter-spacing: 0.01em;
 }
 
@@ -28,7 +28,7 @@
     @include typo(13px);
 
     &-bold {
-      @include typo(14px, 700);
+      @include typo(13px, 700);
     }
   }
 
@@ -57,34 +57,34 @@
   }
 
   &-2xl {
-    @include typo(24px);
+    @include typo(24px, 500, 25px);
 
     &-bold {
-      @include typo(24px, 700);
+      @include typo(24px, 700, 25px);
     }
   }
 
   &-3xl {
-    @include typo(28px);
+    @include typo(28px, 500, 25px);
 
     &-bold {
-      @include typo(28px, 700);
+      @include typo(28px, 700, 25px);
     }
   }
 
   &-4xl {
-    @include typo(32px);
+    @include typo(32px, 500, 25px);
 
     &-bold {
-      @include typo(32px, 700);
+      @include typo(32px, 700, 25px);
     }
   }
 
   &-5xl {
-    @include typo(36px);
+    @include typo(36px, 500, 25px);
 
     &-bold {
-      @include typo(36px, 700);
+      @include typo(36px, 700, 25px);
     }
   }
 

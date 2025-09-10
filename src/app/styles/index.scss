@@ -35,26 +35,3 @@
     z-index: 1;
   }
 }
-
-input,
-select,
-textarea {
-  color: var(--color-text);
-  &::placeholder {
-    color: var(--color-on-surface-dim);
-  }
-}
-
-.cursor {
-  &-pointer {
-    cursor: pointer;
-  }
-
-  &-default {
-    cursor: default;
-  }
-
-  &-not-allowed {
-    cursor: not-allowed;
-  }
-}
