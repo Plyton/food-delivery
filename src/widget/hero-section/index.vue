@@ -5,7 +5,7 @@ import { BaseButton, IconCard } from '@/shared/ui';
 import { heroProductMock } from './model/mockData';
 
 defineOptions({
-  name: "HeroSection",
+  name: 'HeroSection',
 });
 
 const product = ref<Product>(heroProductMock);
@@ -61,11 +61,13 @@ function addToCart(product: Product) {
   position: relative;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 0;
 
   &__image {
     height: 100vh;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   &__container {
@@ -78,7 +80,7 @@ function addToCart(product: Product) {
     left: 5%;
     background-image: url("./assets/hero-container-product.png");
     padding: 20px 24px;
-    color: #fff;
+    color: var(--color-on-surface);
     max-width: 355px;
     min-height: 357px;
   }

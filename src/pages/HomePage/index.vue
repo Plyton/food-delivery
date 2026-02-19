@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ProductList from '@/features/product-list/index.vue';
 import { HeroSection } from '@/widget';
 
 defineOptions({
@@ -7,8 +8,9 @@ defineOptions({
 </script>
 
 <template>
-  <main>
+  <main class="pa-10">
     <HeroSection />
+    <ProductList />
   </main>
 </template>
 

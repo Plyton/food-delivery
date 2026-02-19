@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { FieldProps, FieldEmits } from './types.ts';
+import type { FieldProps, FieldEmits } from '../../types/Field.ts';
 import { BaseButton, IconClose } from '@/shared/ui';
-import { useModifier, type Modifiers } from '../../lib/hooks/useModifier.ts';
+import { useModifier, type Modifiers } from './useModifier.ts';
 
 defineProps<FieldProps>();
 const emit = defineEmits<FieldEmits>();

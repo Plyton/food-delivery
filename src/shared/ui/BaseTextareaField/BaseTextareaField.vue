@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useTemplateRef, watch } from 'vue';
 import type { TextAreaProps } from './types.ts';
-import type { FieldProps } from '../BaseField/types.ts';
+import type { FieldProps } from '../../types/Field.ts';
 import BaseField from '@/shared/ui/BaseField/BaseField.vue';
 
 const modelValue = defineModel<string>();
@@ -19,7 +19,7 @@ watch(() => modelValue.value, (newValue) => {
 
 function handleBlur(): void {
   if (textareaRef.value instanceof HTMLTextAreaElement) {
-    textareaRef.value.scrollTo({top: 0, behavior: "smooth"});
+    textareaRef.value.scrollTo({top: 0, behavior: 'smooth'});
   }
 }
 
@@ -67,6 +67,7 @@ function handleInput(): void {
 <style lang="scss" scoped>
 .df-textarea {
   &__input {
+    width: 100%;
     resize: none;
     padding-top: 5px;
   }

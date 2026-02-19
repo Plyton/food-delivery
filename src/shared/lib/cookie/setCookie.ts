@@ -15,7 +15,7 @@ export function setCookie(
   if (expires) cookie += `; expires=${expires.toUTCString()}`;
   if (path) cookie += `; path=${path}`;
   if (domain) cookie += `; domain=${domain}`;
-  if (secure) cookie += `; secure`;
+  if (secure) cookie += '; secure';
 
   document.cookie = cookie;
 }

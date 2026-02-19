@@ -1,14 +1,12 @@
-export interface Option {
-  [key: string]: string | number;
-}
+import type { Option } from '../../types/Option.ts';
 
 interface Props {
   options: Option[];
-  optionId: string | number;
-  optionName: string;
-  multiple: boolean;
-  remotely: boolean,
-  searchFn: (value: string) => Promise<Option[]>;
+  optionId?: string | number;
+  optionName?: string;
+  multiple?: boolean;
+  remotely?: boolean,
+  searchFn?: (value: string) => Promise<Option[]>;
 }
 
-export type SelectFieldProps = Partial<Props>;
+export type SelectFieldProps = Props;

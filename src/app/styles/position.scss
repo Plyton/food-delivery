@@ -79,6 +79,18 @@
   &-nowrap {
     flex-wrap: nowrap;
   }
+
+  &-0 {
+    flex: 0;
+  }
+
+  &-1 {
+    flex: 1;
+  }
+
+  &-2 {
+    flex: 2;
+  }
 }
 
 .justify {
@@ -168,9 +180,9 @@
 
 .scale {
   &-grow {
-    transform: scale(1.1);
+    transform: scale(1.03);
   }
   &-shrink {
-    transform: scale(0.9);
+    transform: scale(0.97);
   }
 }

@@ -19,35 +19,36 @@ export default defineConfigWithVueTs(
     rules: {
       'eslint no-restricted-imports': 0,
       semi: [2, 'always'],
+      quotes: ['error', 'single'],
       'no-trailing-spaces': 2,
-      'eol-last': ["error", "always"],
-      'no-multiple-empty-lines':  ["error", { "max": 1, "maxEOF": 0 }],
+      'eol-last': ['error', 'always'],
+      'no-multiple-empty-lines':  ['error', { 'max': 1, 'maxEOF': 0 }],
       'vue/max-len': ['error', {
         code: 120,
         template: 120,
       }],
-      "import/order": [
-        "error",
+      'import/order': [
+        'error',
         {
           groups: [
-            "builtin",    // встроенные модули Node.js (fs, path и т.д.)
-            "external",   // внешние зависимости из node_modules
-            "internal",   // внутренние алиасы
-            "index",      // checkObject.ts/tsx файлы
-            "object",     // импорты через объект (редко)
-            "type"        // типы (если используете TypeScript)
+            'builtin',    // встроенные модули Node.js (fs, path и т.д.)
+            'external',   // внешние зависимости из node_modules
+            'internal',   // внутренние алиасы
+            'index',      // checkObject.ts/tsx файлы
+            'object',     // импорты через объект (редко)
+            'type'        // типы (если используете TypeScript)
           ],
           pathGroups: [
             {
-              pattern: "@/**",
-              group: "type",
-              position: "after"
+              pattern: '@/**',
+              group: 'type',
+              position: 'after'
             }
           ],
-          pathGroupsExcludedImportTypes: ["builtin"],
+          pathGroupsExcludedImportTypes: ['builtin'],
           alphabetize: {
-            "order": "asc",
-            "caseInsensitive": true
+            'order': 'asc',
+            'caseInsensitive': true
           }
         }
       ]

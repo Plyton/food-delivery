@@ -23,7 +23,7 @@ export default defineConfig(({ mode }: ConfigEnv ): UserConfig => {
       vueDevTools(),
       eslint({
         emitWarning: false,
-        emitError: false,
+        emitError: true,
       }),
     ],
     server: {

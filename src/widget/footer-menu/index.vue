@@ -31,7 +31,7 @@ defineOptions({
 
 <style scoped lang="scss">
  .app-menu-footer {
-   padding: 40px 40px 20px;
+   padding: 40px 20px 20px;
    background-color: var(--color-on-primary);
    color: var(--color-on-surface);
    &__separator {

@@ -1,10 +1,12 @@
 import { type Ref, reactive, ref } from 'vue';
 
-export function useForm<T extends Record<string, unknown>>(fields: T): {
-  fields: T,
-  isLoading: Ref<boolean>,
-  submit: (submitter: (formData: T) => Promise<unknown>) => Promise<unknown>,
-} {
+interface FormReturnI<T> {
+  fields: T;
+  isLoading: Ref<boolean>;
+  submit: (submitter: (formData: T) => Promise<unknown>) => Promise<unknown>;
+}
+
+export function useForm<T extends Record<string, unknown>>(fields: T): FormReturnI<T> {
   const formFields = reactive(fields) as T;
 
   const isLoading = ref<boolean>(false);

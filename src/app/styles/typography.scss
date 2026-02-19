@@ -88,6 +88,26 @@
     }
   }
 
+  &-10xl {
+    @include typo(80px, 500, 25px);
+
+    &-bold {
+      @include typo(80px, 700, 25px);
+    }
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
   &-ellipsis {
     white-space: nowrap;
     overflow: hidden;
@@ -97,6 +117,13 @@
   &-clamped-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &-clamped-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3 !important;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

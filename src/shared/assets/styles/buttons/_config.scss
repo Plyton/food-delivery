@@ -1,0 +1,40 @@
+@use 'sass:map';
+
+$button_configuration: (
+  // default
+  button_default--background-color_normal: var(--color-primary),
+  button_default--color_normal: var(--color-on-primary),
+  button_default--background-color_hover: var(--color-on-primary-variant),
+  button_default--color_hover: var(--color-on-primary),
+  button_default--background-color_active: var(--color-on-primary),
+  button_default--color_active: var(--color-primary),
+
+  button_default--background-color_disabled: transparent,
+  button_default--color_disabled: var(--color-on-primary-disadled),
+  button_default--border_disabled: 1px solid var(--color-primary-disadled),
+
+  // outline
+  button_outline--color_normal: var(--color-primary),
+  button_outline--border_normal: 1px solid var(--color-primary),
+  button_outline--color_hover: var(--color-on-primary-variant),
+  button_outline--border_hover: 1px solid var(--color-on-primary-variant),
+  button_outline--background-color_active: var(--color-primary),
+  button_outline--color_active: var(--color-on-primary),
+
+  button_outline--color_disabled: var(--color-on-primary-disadled),
+  button_outline--border_disabled: 1px solid var(--color-primary-disadled),
+
+  // icon-fill
+  button_icon-fill--background-color_normal: var(--color-primary),
+  button_icon-fill--background-color_hover: var(--color-on-primary-variant),
+  button_icon-fill--background-color_active: var(--color-on-primary),
+
+  button_icon-fill--background-color_disabled: transparent,
+
+  // arrow
+  button_arrow--background-color_normal: transparent,
+  button_arrow--border_normal: 1px solid var(--color-surface-border),
+  button_arrow--border_hover: 1px solid var(--color-on-surface),
+
+  button_arrow--border_disabled: 1px solid var(--color-primary-disadled),
+);

@@ -45,77 +45,7 @@ function handleClick(evt: Event): void {
 </template>
 
 <style lang="scss" scoped>
-@use 'sass:map';
-$button_configuration: (
-  // default
-  button_default--background-color_normal: var(--color-primary),
-  button_default--color_normal: var(--color-on-primary),
-  button_default--background-color_hover: var(--color-on-primary-variant),
-  button_default--color_hover: var(--color-on-primary),
-  button_default--background-color_active: var(--color-on-primary),
-  button_default--color_active: var(--color-primary),
-  // outline
-  button_outline--color_normal: var(--color-primary),
-  button_outline--border_normal: 1px solid var(--color-primary),
-  button_outline--color_hover: var(--color-on-primary-variant),
-  button_outline--border_hover: 1px solid var(--color-on-primary-variant),
-  button_outline--background-color_active: var(--color-primary),
-  button_outline--color_active: var(--color-on-primary),
-  // icon-fill
-  button_icon-fill--background-color_normal: var(--color-primary),
-  button_icon-fill--background-color_hover: var(--color-on-primary-variant),
-  button_icon-fill--background-color_active: var(--color-on-primary),
-  // arrow
-  button_arrow--background-color_normal: transparent,
-  button_arrow--border_normal: 1px solid var(--color-surface-border),
-  button_arrow--border_hover: 1px solid var(--color-on-surface),
-);
-
-@mixin setButtonValue($key) {
-  @if map.has-key($button_configuration, #{$key}--background-color_normal) {
-    background-color: map.get($button_configuration, #{$key}--background-color_normal);
-  }
-  @if map.has-key($button_configuration, #{$key}--color_normal) {
-    color: map.get($button_configuration, #{$key}--color_normal);
-  }
-  @if map.has-key($button_configuration, #{$key}--border_normal) {
-    border: map.get($button_configuration, #{$key}--border_normal);
-  } @else {
-    border: 1px solid transparent;
-  }
-  @if #{$key} == 'button_icon-fill' {
-    padding: 8px;
-    &:deep(svg) {
-      fill: var(--color-on-primary);
-    }
-  }
-
-  &:not(:disabled, .icon):hover {
-    @if map.has-key($button_configuration, #{$key}--background-color_hover) {
-      background-color: map.get($button_configuration, #{$key}--background-color_hover);
-    }
-    @if map.has-key($button_configuration, #{$key}--color_hover) {
-      color: map.get($button_configuration, #{$key}--color_hover);
-    }
-    @if map.has-key($button_configuration, #{$key}--border_hover) {
-      border: map.get($button_configuration, #{$key}--border_hover);
-    }
-  }
-
-  &:not(:disabled, .icon):active {
-    @if map.has-key($button_configuration, #{$key}--background-color_active) {
-      background: map.get($button_configuration, #{$key}--background-color_active);
-    }
-    @if map.has-key($button_configuration, #{$key}--color_active) {
-      color: map.get($button_configuration, #{$key}--color_active);
-    }
-    @if #{$key} == 'button_icon-fill' {
-      &:deep(svg) {
-        fill: var(--color-primary);
-      }
-    }
-  }
-}
+@use '@/shared/assets/styles/buttons/_mixins.scss' as buttons;
 
 .df-button {
   padding: 10px 18px;
@@ -128,14 +58,6 @@ $button_configuration: (
 
   &__text {
     text-transform: uppercase;
-  }
-
-  &[disabled] {
-    color: var(--color-on-primary-disadled) !important;
-    border: 1px solid var(--color-primary-disadled);
-    opacity: 0.7;
-    background-color: transparent;
-    cursor: not-allowed;
   }
 
   &.icon {
@@ -155,7 +77,7 @@ $button_configuration: (
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    @include setButtonValue(button_arrow);
+    @include buttons.setButtonValue(button_arrow);
 
     &:hover {
       :deep(svg) {
@@ -166,15 +88,15 @@ $button_configuration: (
   }
 
   &.default {
-    @include setButtonValue(button_default);
+    @include buttons.setButtonValue(button_default);
   }
 
   &.outline {
-    @include setButtonValue(button_outline);
+    @include buttons.setButtonValue(button_outline);
   }
 
   &.icon-fill {
-    @include setButtonValue(button_icon-fill);
+    @include buttons.setButtonValue(button_icon-fill);
   }
 }
 </style>

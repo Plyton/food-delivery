@@ -8,7 +8,8 @@ import {
   BaseCounter,
   BaseTextareaField
 } from '@/shared/ui';
-// import IconClose from '@/shared/ui/Icons/IconClose.vue';
+
+// import IconClose from '@/shared/components/Icons/IconClose.vue';
 
 const text = ref('sasd');
 const textarea = ref();
@@ -19,24 +20,6 @@ const options = ref([
   { id: 1, name: 'food' },
   { id: 2, name: 'burger' },
   { id: 3, name: 'fish' },
-  { id: 4, name: 'fish' },
-  { id: 5, name: 'fish' },
-  { id: 6, name: 'fish' },
-  { id: 7, name: 'fish' },
-  { id: 8, name: 'fish' },
-  { id: 9, name: 'fish' },
-  { id: 10, name: 'fish' },
-  { id: 11, name: 'fish' },
-  { id: 12, name: 'fish' },
-  { id: 13, name: 'fish' },
-  { id: 14, name: 'fish' },
-  { id: 15, name: 'fish' },
-  { id: 16, name: 'fish' },
-  { id: 17, name: 'fish' },
-  { id: 18, name: 'fish' },
-  { id: 19, name: 'fish' },
-  { id: 20, name: 'fish' },
-  { id: 21, name: 'fish' },
 ]);
 // function remote(value: string): Promise<{id: number, name: string}[]> {
 //   const arr = [
@@ -68,9 +51,7 @@ const options = ref([
       :options="options"
       label="Text"
     />
-    <BaseButton
-      type="arrow-right"
-    >
+    <BaseButton>
       кнопка
     </BaseButton>
 

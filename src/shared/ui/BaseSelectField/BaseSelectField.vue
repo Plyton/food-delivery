@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { onClickOutside, useDebounceFn } from '@vueuse/core';
-import { ref, computed, useTemplateRef, type ComponentPublicInstance, watch } from 'vue';
-import type { Option, SelectFieldProps } from './types.ts';
-import type { FieldEmits, FieldProps } from '../BaseField/types.ts';
-import { useMultipleSelect } from '@/shared/lib/hooks/useMultipleSelect.ts';
+import { useDebounceFn } from '@vueuse/core';
+import { ref, useTemplateRef, type ComponentPublicInstance } from 'vue';
+import type { SelectFieldProps } from './types.ts';
+import type { Option } from '../../types';
+import type { FieldEmits, FieldProps } from '../../types/Field.ts';
 import { IconArrow, BaseButton, IconClose } from '@/shared/ui';
 import BaseSelectFieldMultiple from './BaseSelectFieldMultiple.vue';
 import BaseField from '../BaseField/BaseField.vue';
+import { useDropdown } from './model/useDropdown.ts';
+import { useMultipleSelect } from './model/useMultipleSelect.ts';
+import { useSingleSelect } from './model/useSingleSelect.ts';
 
 const props = withDefaults(defineProps<FieldProps & SelectFieldProps>(), {
   optionId: 'id',
@@ -16,15 +19,9 @@ const props = withDefaults(defineProps<FieldProps & SelectFieldProps>(), {
 });
 
 const emit = defineEmits<
-  FieldEmits & {
-    select: [id: Array<number | string> | number | string];
-  }
+  FieldEmits & {  select: [id: Array<number | string> | number | string];}
 >();
 
-const isExpand = ref<boolean>(false);
-const inputValue = ref<string>('');
-const localValue = ref<string>('');
-const remotelyOptions = ref<Option[]>([]);
 const listTarget = ref<HTMLDivElement | null>(null);
 
 const selectRef = useTemplateRef<ComponentPublicInstance>('select');
@@ -37,41 +34,34 @@ const {
   checkMultipleSelect,
   handleMultipleSelect,
   handleUpdateClose
-}: ReturnType<typeof useMultipleSelect> = useMultipleSelect(
+} = useMultipleSelect(
   props,
   emit as (event: string, ...args: unknown[]) => void,
   selectRef,
   modelMultiple
 );
 
-const localOptions = computed<Option[]>(() => {
-  return !props.remotely
-    ? props.options.filter((option: Option) => {
-      const optionName: keyof Option = option[props.optionName];
-      return optionName?.toString().toLowerCase().indexOf(inputValue.value.toLowerCase()) >= 0;
-    })
-    : remotelyOptions.value;
-});
+const {
+  inputValue,
+  localValue,
+  remotelyOptions,
+  localOptions,
+  syncLocalFromModel,
+  checkSelect,
+  clearValue,
+} = useSingleSelect(props, modelValue);
 
-watch(
-  () => modelValue.value,
-  () => {
-    if (modelValue.value && typeof modelValue.value === 'object') {
-      localValue.value = modelValue.value[props.optionName].toString();
-    }
-  },
-  { immediate: true, once: true },
-);
-
-function checkSelect(option: Option): boolean {
-  if (!modelValue.value || typeof modelValue.value !== 'object') return false;
-  return modelValue.value[props.optionId] === option[props.optionId];
-}
+const {
+  isOpen: isExpand,
+  toggle: expand,
+  open: handleFocus
+} =  useDropdown(selectRef, props.disabled, syncLocalFromModel);
 
 function handleSelect(option: Option): void {
   modelValue.value = option;
   localValue.value = option[props.optionName].toString();
   emit('select', option[props.optionId]);
+  isExpand.value = !isExpand.value;
 }
 
 async function handleInput(evt: string): Promise<void> {
@@ -81,36 +71,7 @@ async function handleInput(evt: string): Promise<void> {
   emit('input', evt);
 }
 
-function handleFocus(): void {
-  if (!props.disabled) isExpand.value = true;
-}
-
-function clearValue(): void {
-  inputValue.value = '';
-  localValue.value = '';
-  modelValue.value = undefined;
-}
-
-function syncLocalFromModel(): void {
-  inputValue.value = '';
-  localValue.value = typeof modelValue.value === 'object' && localValue.value && !props.disabled
-      ? modelValue.value[props.optionName].toString()
-      : '';
-}
-
-function expand(): void {
-  if (!props.disabled) {
-    isExpand.value = !isExpand.value;
-    syncLocalFromModel();
-  }
-}
-
 const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
-
-onClickOutside(selectRef, () => {
-  isExpand.value = false;
-  syncLocalFromModel();
-});
 </script>
 
 <template>

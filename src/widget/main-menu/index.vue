@@ -21,7 +21,7 @@ defineOptions({
 
 <style scoped lang="scss">
 .app-menu {
-  padding: 20px 40px;
+  padding: 20px;
   color: var(--color-on-surface);
   z-index: var(--index-6) !important;
 }
