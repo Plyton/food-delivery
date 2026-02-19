@@ -1,0 +1,59 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slidedown-enter-active,
+.slidedown-leave-active {
+  transition: max-height 0.25s ease-in-out;
+}
+
+.slidedown-enter-to,
+.slidedown-leave-from {
+  overflow: hidden;
+  max-height: 1000px;
+}
+
+.slidedown-enter-from,
+.slidedown-leave-to {
+  overflow: hidden;
+  max-height: 0;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.15s;
+  transform: scale(0.8);
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+.expand-enter-active,
+.expand-leave-active {
+  transition-property: opacity, height;
+  transition-duration: 0.25s;
+}
+
+.expand-enter-from {
+  opacity: 0;
+}
+
+.expand-enter-to {
+  opacity: 1;
+}
+
+.expand-enter,
+.expand-leave-to {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+}

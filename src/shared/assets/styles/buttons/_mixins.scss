@@ -1,0 +1,63 @@
+@use 'sass:map';
+@use './config.scss' as config;
+
+@mixin setButtonValue($key) {
+  @if map.has-key(config.$button_configuration, #{$key}--background-color_normal) {
+    background-color: map.get(config.$button_configuration, #{$key}--background-color_normal);
+  }
+  @if map.has-key(config.$button_configuration, #{$key}--color_normal) {
+    color: map.get(config.$button_configuration, #{$key}--color_normal);
+  }
+  @if map.has-key(config.$button_configuration, #{$key}--border_normal) {
+    border: map.get(config.$button_configuration, #{$key}--border_normal);
+  } @else {
+    border: 1px solid transparent;
+  }
+  @if #{$key} == 'button_icon-fill' {
+    padding: 8px;
+    &:deep(svg) {
+      fill: var(--color-on-primary);
+    }
+  }
+
+  &:not(:disabled, .icon):hover {
+    @if map.has-key(config.$button_configuration, #{$key}--background-color_hover) {
+      background-color: map.get(config.$button_configuration, #{$key}--background-color_hover);
+    }
+    @if map.has-key(config.$button_configuration, #{$key}--color_hover) {
+      color: map.get(config.$button_configuration, #{$key}--color_hover);
+    }
+    @if map.has-key(config.$button_configuration, #{$key}--border_hover) {
+      border: map.get(config.$button_configuration, #{$key}--border_hover);
+    }
+  }
+
+  &:not(:disabled, .icon):active {
+    @if map.has-key(config.$button_configuration, #{$key}--background-color_active) {
+      background: map.get(config.$button_configuration, #{$key}--background-color_active);
+    }
+    @if map.has-key(config.$button_configuration, #{$key}--color_active) {
+      color: map.get(config.$button_configuration, #{$key}--color_active);
+    }
+    @if #{$key} == 'button_icon-fill' {
+      &:deep(svg) {
+        fill: var(--color-primary);
+      }
+    }
+  }
+
+  &:disabled {
+    @if map.has-key(config.$button_configuration, #{$key}--background-color_disabled) {
+      background-color: map.get(config.$button_configuration, #{$key}--background-color_disabled);
+    }
+    @if map.has-key(config.$button_configuration, #{$key}--color_disabled) {
+      color: map.get(config.$button_configuration, #{$key}--color_disabled);
+    }
+    @if map.has-key(config.$button_configuration, #{$key}--border_disabled) {
+      border: map.get(config.$button_configuration, #{$key}--border_disabled);
+    }
+
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}

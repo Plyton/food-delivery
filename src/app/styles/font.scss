@@ -1,0 +1,35 @@
+@mixin font-face($font-weight, $font-style, $src) {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), $src;
+  font-weight: $font-weight;
+  font-style: $font-style;
+  font-display: swap;
+}
+
+@font-face {
+  @include font-face(
+    400,
+    normal,
+    url('@/shared/assets/fonts/Montserrat-Regular.ttf') format('truetype')
+  );
+}
+
+@font-face {
+  @include font-face(
+    500,
+    normal,
+    url('@/shared/assets/fonts/Montserrat-Medium.ttf') format('truetype')
+  );
+}
+
+@font-face {
+  @include font-face(
+    700,
+    normal,
+    url('@/shared/assets/fonts/Montserrat-Bold.ttf') format('truetype')
+  );
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}

@@ -12,7 +12,6 @@
     }
   ],
   "compilerOptions":  {
-    "isolatedModules": true,
     "types": ["vite/client"]
   }
 }
