@@ -8,6 +8,8 @@ defineOptions({
 
 <template>
   <MainMenu />
-  <slot />
+  <main class="pa-10">
+    <slot />
+  </main>
   <FooterMenu />
 </template>

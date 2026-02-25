@@ -7,8 +7,6 @@ defineOptions({
 </script>
 
 <template>
-  <main class="pa-10">
-    <ProductOfTheDay />
-    <ProductList />
-  </main>
+  <ProductOfTheDay />
+  <ProductList />
 </template>

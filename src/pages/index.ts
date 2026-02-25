@@ -13,4 +13,10 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/pages/Test/TestPage.vue'),
     meta: { layout: 'main' }
   },
+  {
+    path: '/hot/hot-dishes',
+    name: 'HotDishes',
+    component: () => import('@/pages/HotDishesPage/index.vue'),
+    meta: { layout: 'main' }
+  },
 ];

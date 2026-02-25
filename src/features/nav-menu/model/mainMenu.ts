@@ -1,13 +1,13 @@
 import type { MenuItem } from './types.ts';
 
-export const mainMenu: MenuItem[] = [
+export const mainMenu = [
   { id: '1', label: 'Акции 🔥', to: '/discounts' },
   {
     id: '2',
     label: 'Горячее',
     to: '/hot',
     submenu: [
-      { id: '2.1', label: 'Супы', to: '/hot/soups' },
+      { id: '2.1', label: 'Горячие блюда', to: '/hot/hot-dishes' },
       { id: '2.2', label: 'Мясо', to: '/hot/meat' },
     ],
   },
@@ -23,4 +23,4 @@ export const mainMenu: MenuItem[] = [
   { id: '4', label: 'Свежая выпечка', to: '/bakery' },
   { id: '5', label: 'Десерты', to: '/desserts' },
   { id: '6', label: 'Напитки', to: '/drinks' },
-];
+] as const satisfies MenuItem[];
