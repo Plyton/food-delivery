@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div>В разработке</div>
+  <div>В разработке!</div>
 </template>
 
 <style scoped lang="scss">
