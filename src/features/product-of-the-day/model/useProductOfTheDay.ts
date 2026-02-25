@@ -7,7 +7,7 @@ export const useProductOfTheDay = () => {
     des: 'Нежный стейк дикого лосося, пропитанный соком и ароматом слегка обжаренных фермерских овощей',
     weight: 250,
     price: 1200,
-    image: '/img/dishes/hero-salmon.png',
+    image: 'img/dishes/hero-salmon.png',
   };
 
   return {
