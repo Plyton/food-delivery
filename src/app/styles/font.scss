@@ -1,5 +1,5 @@
 @mixin font-face($font-weight, $font-style, $src) {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   src: local('Montserrat'), $src;
   font-weight: $font-weight;
   font-style: $font-style;

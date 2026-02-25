@@ -7,6 +7,7 @@ export interface SingleSelectState {
   remotelyOptions: Ref<Option[]>;
   localOptions: ComputedRef<Option[]>;
   syncLocalFromModel: () => void;
+  setReturnValue: (option: Option) => Option | string | number;
   checkSelect: (option: Option) => boolean;
   clearValue: () => void;
 }

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const telRaw: string = '+79991234567';
-const tel: string = '+7 (999) 123-45-67';
-const email: string = 'info@example.com';
+import { APP_TEL, SUPPORT_EMAIL } from '@/shared/config';
+import { utils } from '@/shared/lib';
+
+const telRaw: string = utils.formatPhoneToRaw(APP_TEL);
 </script>
 
 <template>
@@ -11,14 +12,14 @@ const email: string = 'info@example.com';
       class="text-xl"
       aria-label="Позвонить по номеру"
     >
-      {{ tel }}
+      {{ APP_TEL }}
     </a>
     <a
-      :href="`mailto:${email}`"
+      :href="`mailto:${SUPPORT_EMAIL}`"
       class="text-sm"
       aria-label="Написать на email"
     >
-      {{ email }}
+      {{ SUPPORT_EMAIL }}
     </a>
   </address>
 </template>

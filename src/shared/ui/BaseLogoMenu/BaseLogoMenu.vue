@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { BRAND_NAME } from '../../const';
+import { APP_NAME } from '../../config';
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { BRAND_NAME } from '../../const';
     class="app-menu-logo text-4xl-bold cursor-pointer"
     aria-label="Главная страница"
   >
-    {{ BRAND_NAME }}
+    {{ APP_NAME }}
   </router-link>
 </template>
 

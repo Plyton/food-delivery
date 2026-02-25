@@ -189,12 +189,11 @@ defineExpose({
   }
 }
 
-:deep {
-  .df-field-container {
-    padding: 0;
-    &__content {
-      height: 39px;
-    }
-  }
+:deep(.df-field-container) {
+  padding: 0;
+}
+
+:deep(.df-field-container__content) {
+  height: 39px;
 }
 </style>

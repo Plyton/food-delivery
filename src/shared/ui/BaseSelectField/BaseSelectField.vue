@@ -26,7 +26,7 @@ const listTarget = ref<HTMLDivElement | null>(null);
 
 const selectRef = useTemplateRef<ComponentPublicInstance>('select');
 
-const modelValue = defineModel<Option>();
+const modelValue = defineModel<Option | string | number>();
 // для v-model:multiple-select обязательно передать массив и использовать multiple prop
 const modelMultiple = defineModel<Option[]>('multiple-select', { default: [] });
 
@@ -49,6 +49,7 @@ const {
   syncLocalFromModel,
   checkSelect,
   clearValue,
+  setReturnValue,
 } = useSingleSelect(props, modelValue);
 
 const {
@@ -58,7 +59,7 @@ const {
 } =  useDropdown(selectRef, props.disabled, syncLocalFromModel);
 
 function handleSelect(option: Option): void {
-  modelValue.value = option;
+  modelValue.value = setReturnValue(option);
   localValue.value = option[props.optionName].toString();
   emit('select', option[props.optionId]);
   isExpand.value = !isExpand.value;

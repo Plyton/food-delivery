@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { DishCard } from '@/entities';
+  import { ProductCard } from '@/entities';
+  import { BaseButton, IconCard } from '@/shared/ui';
   import { productListMock } from './model/producyListMock.ts';
 
   defineOptions({
@@ -13,11 +14,17 @@
       Популярные блюда
     </h1>
     <div class="popular-dishes__list">
-      <DishCard
+      <ProductCard
         v-for="product of productListMock"
         :key="product.id"
         :product="product"
-      />
+      >
+        <template #action>
+          <BaseButton type="icon-fill">
+            <IconCard />
+          </BaseButton>
+        </template>
+      </ProductCard>
     </div>
   </section>
 </template>

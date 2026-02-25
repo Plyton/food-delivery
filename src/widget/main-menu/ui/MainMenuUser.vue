@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// todo в будущем сделать feature
 import { shallowRef } from 'vue';
 import type { MenuIcon } from '../model/types.ts';
 import { IconSearch, IconUser, IconCard, BaseButton } from '@/shared/ui';

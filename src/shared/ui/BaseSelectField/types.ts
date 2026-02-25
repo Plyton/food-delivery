@@ -6,6 +6,7 @@ interface Props {
   optionName?: string;
   multiple?: boolean;
   remotely?: boolean,
+  returnValue?: string;
   searchFn?: (value: string) => Promise<Option[]>;
 }
 

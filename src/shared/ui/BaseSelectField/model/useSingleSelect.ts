@@ -6,7 +6,7 @@ import type { SingleSelectState } from './types.ts';
 
 export function useSingleSelect(
   props: FieldProps & SelectFieldProps,
-  modelValue: Ref<Option | undefined>,
+  modelValue: Ref<Option | string | number | undefined>,
 ): SingleSelectState {
   const inputValue = ref('');
   const localValue = ref('');
@@ -50,6 +50,18 @@ export function useSingleSelect(
     modelValue.value = undefined;
   }
 
+  function setReturnValue(option: Option): Option | string | number {
+    if (props.returnValue === props.optionId) {
+      return option[props.optionId!];
+    }
+
+    if (props.returnValue === props.optionName) {
+      return option[props.optionName!];
+    }
+
+    return option;
+  }
+
   return {
     inputValue,
     localValue,
@@ -58,5 +70,6 @@ export function useSingleSelect(
     syncLocalFromModel,
     checkSelect,
     clearValue,
+    setReturnValue,
   };
 }

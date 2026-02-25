@@ -1,1 +1,1 @@
-export * from './dish-card';
+export * from './product-card';

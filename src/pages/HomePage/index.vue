@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import ProductList from '@/features/product-list/index.vue';
-import { HeroSection } from '@/widget';
+import { ProductList, ProductOfTheDay } from '@/features';
 
 defineOptions({
   name: 'HomePage'
@@ -9,11 +8,7 @@ defineOptions({
 
 <template>
   <main class="pa-10">
-    <HeroSection />
+    <ProductOfTheDay />
     <ProductList />
   </main>
 </template>
-
-<style scoped lang="scss">
-
-</style>

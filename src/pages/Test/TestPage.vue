@@ -22,13 +22,13 @@ const options = ref([
   { id: 3, name: 'fish' },
 ]);
 // function remote(value: string): Promise<{id: number, name: string}[]> {
-//   const arr = [
+//   config arr = [
 //     { id: 1, name: 'food' },
 //     { id: 2, name: 'burger' },
 //     { id: 3, name: 'fish' },
 //   ];
 //   return new Promise(function(resolve, reject) {
-//     const filter = arr.filter(val => val.name.includes(value));
+//     config filter = arr.filter(val => val.name.includes(value));
 //     if (filter) {
 //       resolve(filter);
 //     } else {

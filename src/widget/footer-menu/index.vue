@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NavMenu, legalMenu } from '@/features';
-import { BRAND_NAME } from '@/shared/const';
+import { APP_NAME, COPYRIGHT } from '@/shared/config';
 import FooterMenuContacts from './ui/FooterMenuContacts.vue';
 import FooterMenuMain from './ui/FooterMenuMain.vue';
 
@@ -19,7 +19,7 @@ defineOptions({
     <hr class="app-menu-footer__separator w-10">
 
     <div class="d-flex justify-between">
-      <small class="text-sm">© 2020–2025, ООО «{{ BRAND_NAME }}», официальный сайт</small>
+      <small class="text-sm">{{ COPYRIGHT }}, ООО «{{ APP_NAME }}», официальный сайт</small>
       <NavMenu
         :menu="legalMenu"
         appearance="footer"
