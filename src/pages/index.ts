@@ -11,12 +11,12 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/test',
     name: 'Test',
     component: () => import('@/pages/Test/TestPage.vue'),
-    meta: { layout: 'main' }
+    meta: { layout: 'main', breadcrumb: 'Тест' }
   },
   {
     path: '/hot/hot-dishes',
     name: 'HotDishes',
     component: () => import('@/pages/HotDishesPage/index.vue'),
-    meta: { layout: 'main' }
+    meta: { layout: 'main', breadcrumb: 'Горячие блюда', title: 'Горячие блюда' }
   },
 ];

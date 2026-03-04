@@ -88,6 +88,38 @@
     }
   }
 
+  &-6xl {
+    @include typo(40px, 500, 25px);
+
+    &-bold {
+      @include typo(40px, 700, 25px);
+    }
+  }
+
+  &-7xl {
+    @include typo(50px, 500, 25px);
+
+    &-bold {
+      @include typo(50px, 700, 25px);
+    }
+  }
+
+  &-8xl {
+    @include typo(60px, 500, 25px);
+
+    &-bold {
+      @include typo(60px, 700, 25px);
+    }
+  }
+
+  &-9xl {
+    @include typo(70px, 500, 25px);
+
+    &-bold {
+      @include typo(70px, 700, 25px);
+    }
+  }
+
   &-10xl {
     @include typo(80px, 500, 25px);
 

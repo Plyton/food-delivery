@@ -1,6 +1,7 @@
 import type { ProductI } from '@/entities';
 import { uuid } from '@/shared/lib/uuid';
-export const productListMock: ProductI[] = [
+
+export const popularProduct = [
   {
     id: uuid(),
     title: 'Хачапури по-аджарски',
@@ -97,4 +98,4 @@ export const productListMock: ProductI[] = [
     des: 'Греческий йогурт с ягодами, 3 хинкали традиционных, салат цезарь, пирожки с уткой, морс',
     weight: 450,
   },
-];
+] as const satisfies ProductI[];

@@ -1,21 +1,24 @@
 <script setup lang="ts">
-  import { ProductCard } from '@/entities';
+  import { ProductCard, type ProductI } from '@/entities';
   import { BaseButton, IconCard } from '@/shared/ui';
-  import { productListMock } from './model/producyListMock.ts';
 
   defineOptions({
     name: 'ProductList',
   });
+
+  defineProps<{
+    items: ProductI[]
+  }>();
 </script>
 
 <template>
   <section class="popular-dishes">
     <h1 class="popular-dishes__header d-flex items-center justify-center text-10xl">
-      Популярные блюда
+      <slot name="header" />
     </h1>
     <div class="popular-dishes__list">
       <ProductCard
-        v-for="product of productListMock"
+        v-for="product of items"
         :key="product.id"
         :product="product"
       >

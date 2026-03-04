@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProductList, ProductOfTheDay } from '@/features';
+import { ProductList, ProductOfTheDay, popularProduct } from '@/features';
 
 defineOptions({
   name: 'HomePage'
@@ -8,5 +8,9 @@ defineOptions({
 
 <template>
   <ProductOfTheDay />
-  <ProductList />
+  <ProductList :items="popularProduct">
+    <template #header>
+      Популярные блюда
+    </template>
+  </ProductList>
 </template>
