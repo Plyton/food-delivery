@@ -9,7 +9,16 @@ export default defineConfigWithVueTs(
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
   pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommendedTypeChecked,
-
+  {
+    name: 'app/typescript',
+    files: ['**/*.{ts,tsx,vue}'],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        extraFileExtensions: ['.vue']
+      }
+    }
+  },
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}'],

@@ -1,13 +1,12 @@
 <script setup lang="ts">
- defineOptions({
+import { hotDishProducts } from '@/entities';
+import { ProductList } from '@/widget';
+
+defineOptions({
    name: 'HotDishesPage',
  });
 </script>
 
 <template>
-  <div>В разработке!</div>
+  <ProductList :items="hotDishProducts" />
 </template>
-
-<style scoped lang="scss">
-
-</style>

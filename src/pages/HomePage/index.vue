@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ProductList, ProductOfTheDay, popularProduct } from '@/features';
+import { popularProduct } from '@/entities';
+import { ProductList, ProductOfTheDay } from '@/widget';
 
 defineOptions({
   name: 'HomePage'

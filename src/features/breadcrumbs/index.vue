@@ -3,7 +3,7 @@ import { useBreadcrumbs } from './model/useBreadcrumbs';
 import BreadcrumbList from './ui/BreadcrumbList.vue';
 
 defineOptions({
-    name: 'AppBreadcrumbs'
+    name: 'NavigationBreadcrumbs'
   }
 );
 

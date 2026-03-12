@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ProductCard, type ProductI } from '@/entities';
-  import { BaseButton, IconCard } from '@/shared/ui';
+  import { AddToCart } from '@/features';
 
   defineOptions({
     name: 'ProductList',
@@ -13,19 +13,23 @@
 
 <template>
   <section class="popular-dishes">
-    <h1 class="popular-dishes__header d-flex items-center justify-center text-10xl">
+    <h1
+      v-if="$slots.header"
+      class="popular-dishes__header d-flex items-center justify-center text-10xl"
+    >
       <slot name="header" />
     </h1>
+
+    <slot name="sort" />
+
     <div class="popular-dishes__list">
       <ProductCard
         v-for="product of items"
         :key="product.id"
         :product="product"
       >
-        <template #action>
-          <BaseButton type="icon-fill">
-            <IconCard />
-          </BaseButton>
+        <template #action="{ item }">
+          <AddToCart :product-id="item.id" />
         </template>
       </ProductCard>
     </div>
@@ -34,7 +38,6 @@
 
 <style scoped lang="scss">
   .popular-dishes {
-    padding-top: 150px;
     color: var(--color-on-surface);
     &__header {
       height: 194px;
