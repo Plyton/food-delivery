@@ -1,2 +1,11 @@
 export type { ProductI } from './model/types';
 export { default as ProductCard } from './index.vue';
+export { popularProduct } from './model/popularProduct.ts';
+export { hotDishProducts } from './model/hotDishProducts.ts';
+export { meatProduct } from './model/meatProduct.ts';
+export { productOfTheDay } from './model/productOfTheDay.ts';
+export { saladProduct } from './model/saladProduct.ts';
+export { snackProduct } from './model/snackProduct.ts';
+export { bakeryProduct } from './model/bakeryProduct.ts';
+export { dessertsProduct } from './model/dessertsProduct.ts';
+export { drinksProduct } from './model/drinksProduct.ts';

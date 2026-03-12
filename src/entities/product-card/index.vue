@@ -45,7 +45,10 @@ const cardClass = computed(() => [
           {{ formatNumber(product.price) }} {{ CURRENCY_SYMBOL }}
         </data>
 
-        <slot name="action" />
+        <slot
+          name="action"
+          :item="product"
+        />
       </footer>
     </div>
   </article>
