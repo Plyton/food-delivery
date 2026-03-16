@@ -1,4 +1,4 @@
-import type { Option } from '../../types/Option.ts';
+import type { Option } from '../../types/Option';
 
 interface Props {
   options: Option[];

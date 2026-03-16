@@ -125,6 +125,20 @@
   }
 }
 
+.self {
+  &-center {
+    align-self: center;
+  }
+
+  &-start {
+    align-self: start;
+  }
+
+  &-end {
+    align-self: end;
+  }
+}
+
 .overflow {
   &-auto {
     overflow: auto;

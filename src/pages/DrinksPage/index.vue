@@ -8,5 +8,5 @@ defineOptions({
 </script>
 
 <template>
-  <ProductList :items="drinksProduct" />asssssssssssssssssssssssssssssssss
+  <ProductList :items="drinksProduct" />
 </template>

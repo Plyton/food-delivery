@@ -1,4 +1,4 @@
-import type { MenuItem } from './types.ts';
+import type { MenuItem } from './types';
 
 export const mainMenu = [
   { id: '1', label: 'Акции 🔥', to: '/discounts' },

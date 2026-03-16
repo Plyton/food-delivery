@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from 'vue';
-import type { CounterProps } from './types.ts';
+import type { CounterProps } from './types';
 import { BaseButton, IconMinus, IconPlus } from '@/shared/ui';
 
 const props = defineProps<CounterProps>();

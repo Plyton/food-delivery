@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { SelectFieldProps } from './types.ts';
+import type { SelectFieldProps } from './types';
 import type { Option } from '../../types';
-import type { FieldEmits, FieldProps } from '../../types/Field.ts';
-import type { ChipEmits } from '../BaseChip/types.ts';
+import type { FieldEmits, FieldProps } from '../../types/Field';
+import type { ChipEmits } from '../BaseChip/types';
 import { BaseButton, BaseChip } from '@/shared/ui';
 import BaseField from '../BaseField/BaseField.vue';
 

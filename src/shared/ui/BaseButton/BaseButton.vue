@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { ButtonEmits, ButtonProps } from './types.ts';
+import type { ButtonEmits, ButtonProps } from './types';
 import { IconArrowLeft, IconArrowRight } from '../Icons';
 
 const props = withDefaults(defineProps<ButtonProps>(), {

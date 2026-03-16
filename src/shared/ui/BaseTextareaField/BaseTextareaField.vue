@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useTemplateRef, watch } from 'vue';
-import type { TextAreaProps } from './types.ts';
-import type { FieldProps } from '../../types/Field.ts';
+import type { TextAreaProps } from './types';
+import type { FieldProps } from '../../types/Field';
 import BaseField from '@/shared/ui/BaseField/BaseField.vue';
 
 const modelValue = defineModel<string>();

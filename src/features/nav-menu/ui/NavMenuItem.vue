@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuItem } from '../model/types.ts';
+import type { MenuItem } from '../model/types';
 import { IconArrow } from '@/shared/ui';
 import NavSubMenu from './NavSubMenu.vue';
 

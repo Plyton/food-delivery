@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
 import { ref, useTemplateRef, type ComponentPublicInstance } from 'vue';
-import type { SelectFieldProps } from './types.ts';
+import type { SelectFieldProps } from './types';
 import type { Option } from '../../types';
-import type { FieldEmits, FieldProps } from '../../types/Field.ts';
+import type { FieldEmits, FieldProps } from '../../types/Field';
 import { IconArrow, BaseButton, IconClose } from '@/shared/ui';
 import BaseSelectFieldMultiple from './BaseSelectFieldMultiple.vue';
 import BaseField from '../BaseField/BaseField.vue';
@@ -15,12 +15,10 @@ const props = withDefaults(defineProps<FieldProps & SelectFieldProps>(), {
   optionId: 'id',
   optionName: 'name',
   options: () => [],
-  searchFn: () => Promise.resolve([]),
+  searchFn: () => Promise.resolve([])
 });
 
-const emit = defineEmits<
-  FieldEmits & {  select: [id: Array<number | string> | number | string];}
->();
+const emit = defineEmits<FieldEmits>();
 
 const listTarget = ref<HTMLDivElement | null>(null);
 
@@ -49,19 +47,18 @@ const {
   syncLocalFromModel,
   checkSelect,
   clearValue,
-  setReturnValue,
+  setReturnValue
 } = useSingleSelect(props, modelValue);
 
 const {
   isOpen: isExpand,
   toggle: expand,
   open: handleFocus
-} =  useDropdown(selectRef, props.disabled, syncLocalFromModel);
+} = useDropdown(selectRef, props.disabled, syncLocalFromModel);
 
 function handleSelect(option: Option): void {
   modelValue.value = setReturnValue(option);
   localValue.value = option[props.optionName].toString();
-  emit('select', option[props.optionId]);
   isExpand.value = !isExpand.value;
 }
 
@@ -147,7 +144,8 @@ const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
       <transition name="fade">
         <div
           v-if="isExpand"
-          :class="['df-select-list', { invalid: errorMessage }]"
+          class="df-select-list text-sm"
+          :class="{ invalid: errorMessage }"
         >
           <div
             v-for="option in localOptions"
@@ -180,6 +178,7 @@ const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
 <style scoped lang="scss">
 .df-select {
   position: relative;
+
   &-list {
     overflow: auto;
     position: absolute;
@@ -191,15 +190,16 @@ const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
     z-index: var(--index-2);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
     max-height: 250px;
+
     &.invalid {
       border: 2px solid var(--color-error);
     }
   }
 
   &__option {
-    padding: 14px;
+    padding: 10px;
     cursor: pointer;
-    color: var(--color-base-text);
+    color: var(--color-text);
     transition: background-color 0.25s;
     white-space: normal;
 
@@ -207,6 +207,7 @@ const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
     &.selected {
       background-color: var(--color-on-primary-variant);
       color: var(--color-on-primary);
+
       &:hover {
         background-color: var(--color-primary);
       }
@@ -220,13 +221,17 @@ const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
 
   &__icon {
     transition: transform 0.25s ease-in-out !important;
+    margin-right: 6px;
+
     &.rotate {
       transform: rotate(180deg);
     }
+
     &.multiple {
       position: absolute;
       right: 5px;
     }
+
     &.disabled {
       cursor: not-allowed;
     }

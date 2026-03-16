@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ChipEmits, ChipProps } from './types.ts';
+import type { ChipEmits, ChipProps } from './types';
 defineProps<ChipProps>();
 defineEmits<ChipEmits>();
 </script>

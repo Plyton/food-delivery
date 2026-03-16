@@ -3,7 +3,7 @@
     width="13.000000"
     height="8.000000"
     viewBox="0 0 13 8"
-    fill="#09234E"
+    fill="var(--color-text)"
     fill-opacity="1.000000"
     fill-rule="evenodd"
     xmlns="http://www.w3.org/2000/svg"

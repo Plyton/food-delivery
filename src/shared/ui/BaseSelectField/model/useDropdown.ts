@@ -1,6 +1,11 @@
 import { onClickOutside } from '@vueuse/core';
 import { type ComponentPublicInstance, ref, type Ref } from 'vue';
-import type { DropdownSelectI } from './types.ts';
+
+interface DropdownSelectI {
+  isOpen: Ref<boolean>;
+  open: () => void;
+  toggle: () => void;
+}
 
 export function useDropdown(
   refEl: Ref<ComponentPublicInstance | null>,

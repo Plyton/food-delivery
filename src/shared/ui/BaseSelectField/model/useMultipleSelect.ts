@@ -1,9 +1,14 @@
 import { type ComponentPublicInstance, nextTick, type Ref } from 'vue';
-import type { MultipleSelectI } from './types.ts';
-import type { Option } from '../../../types/Option.ts';
-import type { FieldProps } from '@/shared/types/Field.ts';
-import type { SelectFieldProps } from '@/shared/ui/BaseSelectField/types.ts';
+import type { Option } from '../../../types/Option';
+import type { FieldProps } from '@/shared/types/Field';
+import type { SelectFieldProps } from '@/shared/ui/BaseSelectField/types';
 import BaseSelectFieldMultiple from '../BaseSelectFieldMultiple.vue';
+
+interface MultipleSelectI {
+  checkMultipleSelect: (option: Option) => boolean;
+  handleUpdateClose: (id: string | number) => void;
+  handleMultipleSelect: (option: Option) => void;
+}
 
 export function useMultipleSelect(
   props: Pick<FieldProps, 'disabled'> & Pick<Required<SelectFieldProps>, 'optionId' | 'optionName'>,

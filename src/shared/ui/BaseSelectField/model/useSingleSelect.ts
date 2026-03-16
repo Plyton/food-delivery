@@ -1,8 +1,18 @@
-import { computed, ref, type Ref, watch } from 'vue';
-import type { FieldProps } from '../../../types/Field.ts';
-import type { Option } from '../../../types/Option.ts';
-import type { SelectFieldProps } from '../types.ts';
-import type { SingleSelectState } from './types.ts';
+import { computed, type ComputedRef, ref, type Ref, watch } from 'vue';
+import type { FieldProps } from '../../../types/Field';
+import type { Option } from '../../../types/Option';
+import type { SelectFieldProps } from '../types';
+
+interface SingleSelectState {
+  inputValue: Ref<string>;
+  localValue: Ref<string>;
+  remotelyOptions: Ref<Option[]>;
+  localOptions: ComputedRef<Option[]>;
+  syncLocalFromModel: () => void;
+  setReturnValue: (option: Option) => Option | string | number;
+  checkSelect: (option: Option) => boolean;
+  clearValue: () => void;
+}
 
 export function useSingleSelect(
   props: FieldProps & SelectFieldProps,
@@ -15,11 +25,22 @@ export function useSingleSelect(
   watch(
     modelValue,
     () => {
-      if (modelValue.value && typeof modelValue.value === 'object') {
+      if (!modelValue.value) return;
+
+      if (typeof modelValue.value === 'object') {
         localValue.value = modelValue.value[props.optionName!].toString();
+        return;
+      }
+
+      const option = props.options.find(
+        (o) => o[props.optionId!] === modelValue.value
+      );
+
+      if (option) {
+        localValue.value = option[props.optionName!].toString();
       }
     },
-    { immediate: true, once: true },
+    { immediate: true },
   );
 
   const localOptions = computed<Option[]>(() => {
@@ -32,10 +53,23 @@ export function useSingleSelect(
   });
 
   function syncLocalFromModel() {
-    localValue.value =
-      typeof modelValue.value === 'object' && !props.disabled
-        ? modelValue.value[props.optionName!].toString()
-        : '';
+    if (!modelValue.value || props.disabled) {
+      localValue.value = '';
+      inputValue.value = '';
+      return;
+    }
+
+    let option: Option | undefined;
+
+    if (typeof modelValue.value === 'object') {
+      option = modelValue.value;
+    } else {
+      option = props.options.find(
+        (o) => o[props.optionId!] === modelValue.value
+      );
+    }
+
+    localValue.value = option ? option[props.optionName!].toString() : '';
     inputValue.value = '';
   }
 

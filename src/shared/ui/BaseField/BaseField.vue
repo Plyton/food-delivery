@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FieldProps, FieldEmits } from '../../types/Field.ts';
+import type { FieldProps, FieldEmits } from '../../types/Field';
 import { BaseButton, IconClose } from '@/shared/ui';
 import { useModifier, type Modifiers } from './useModifier.ts';
 
@@ -8,7 +8,7 @@ const emit = defineEmits<FieldEmits>();
 const [modelValue, modelModifiers] = defineModel<string, Modifiers>({
   set(value) {
     return useModifier(value, modelModifiers);
-  },
+  }
 });
 
 function handleInput(evt: Event): void {
@@ -29,16 +29,17 @@ function clearValue(): void {
 </script>
 
 <template>
-  <div class="df-field">
+  <div class="df-field d-flex items-center gap-4">
     <label
       v-if="label"
-      class="df-field__label text-sm text-clamped-2"
+      class="df-field__label d-flex items-center text-sm text-clamped-2"
       :class="{ required }"
     >
       {{ label }}
     </label>
+
     <div
-      class="df-field-container d-flex"
+      class="df-field-container d-flex items-center flex-nowrap flex-1 w-full"
       :class="{ invalid: errorMessage }"
     >
       <div
@@ -90,13 +91,9 @@ function clearValue(): void {
 
 <style lang="scss" scoped>
 .df-field {
- display: flex;
+  padding-bottom: 20px;
   &-container {
-    width: 100%;
-    flex-wrap: nowrap;
-    align-items: center;
     position: relative;
-    padding-bottom: 20px;
   }
 
   &-wrap {
@@ -134,23 +131,17 @@ function clearValue(): void {
   }
 
   &__label {
-    width: 125px;
     text-align: right;
+    height: 100%;
     text-transform: uppercase;
     color: var(--color-on-surface-dim);
     pointer-events: none;
-    padding-right: 20px;
+    white-space: nowrap;
 
     &.required::after {
       content: '*';
       display: inline-block;
-      text-rendering: auto;
-      line-height: inherit;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font: 500 14px/21px 'Material Design Icons';
       color: var(--color-primary);
-      padding-left: 2px;
     }
   }
 
@@ -164,7 +155,7 @@ function clearValue(): void {
 
   &__error {
     position: absolute;
-    top: 38px;
+    top: 40px;
     color: var(--color-error);
   }
 }

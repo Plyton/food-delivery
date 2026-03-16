@@ -9,7 +9,10 @@ defineOptions({
 
 <template>
   <ProductOfTheDay />
-  <ProductList :items="popularProduct">
+  <ProductList
+    :items="popularProduct"
+    :sort="false"
+  >
     <template #header>
       Популярные блюда
     </template>
