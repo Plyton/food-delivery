@@ -1,36 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { SelectFieldProps } from './types';
-import type { Option } from '../../types';
-import type { FieldEmits, FieldProps } from '../../types/Field';
-import type { ChipEmits } from '../BaseChip/types';
-import { BaseButton, BaseChip } from '@/shared/ui';
-import BaseField from '../BaseField/BaseField.vue';
+  import { ref } from 'vue';
+  import type { SelectFieldProps } from './types';
+  import type { Option } from '../../types';
+  import type { FieldEmits, FieldProps } from '../../types/Field';
+  import type { ChipEmits } from '../BaseChip/types';
+  import { BaseButton, BaseChip } from '@/shared/ui';
+  import BaseField from '../BaseField/BaseField.vue';
 
-withDefaults(
-  defineProps<
-    FieldProps &
-      Pick<Required<SelectFieldProps>, 'optionId' | 'optionName'> & {
-        modelMultiple?: Option[];
-      }
-  >(),
-  {
-    modelMultiple: () => [],
-  },
-);
-const emit = defineEmits<FieldEmits & ChipEmits>();
+  withDefaults(
+    defineProps<
+      FieldProps &
+        Pick<Required<SelectFieldProps>, 'optionId' | 'optionName'> & {
+          modelMultiple?: Option[];
+        }
+    >(),
+    {
+      modelMultiple: () => [],
+    },
+  );
+  const emit = defineEmits<FieldEmits & ChipEmits>();
 
-const modelValue = defineModel<string>('search');
-const selectMultipleWrapperRef = ref<HTMLDivElement | null>(null);
+  const modelValue = defineModel<string>('search');
+  const selectMultipleWrapperRef = ref<HTMLDivElement | null>(null);
 
-const handleInput = ($event: string): void => {
-  modelValue.value = $event;
-  emit('input', modelValue.value);
-};
+  const handleInput = ($event: string): void => {
+    modelValue.value = $event;
+    emit('input', modelValue.value);
+  };
 
-defineExpose({
-  selectMultipleWrapperRef,
-});
+  defineExpose({
+    selectMultipleWrapperRef,
+  });
 </script>
 
 <template>
@@ -46,7 +46,7 @@ defineExpose({
       <div
         ref="selectMultipleWrapperRef"
         class="df-select-multiple__wrapper"
-        :content="{disabled}"
+        :content="{ disabled }"
         @click="$emit('focus', $event)"
       >
         <div class="df-select-multiple d-flex items-center">
@@ -96,104 +96,104 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.df-select-multiple {
-  display: flex;
-  &__container {
-    position: relative;
+  .df-select-multiple {
     display: flex;
-    align-items: center;
-    padding-bottom: 20px;
-    width: 100%;
-  }
-  &__wrapper {
-    position: relative;
-    width: 100%;
-    height: 42px;
-    overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE и Edge */
-    &.disabled {
-      overflow-y: hidden;
-    }
-  }
-
-  &__content {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0 5px;
-    gap: 4px;
-    background-color: white;
-    &-wrapper {
+    &__container {
       position: relative;
-      background-color: var(--color-on-surface);
-      border: 2px solid transparent;
-      transition: border-color ease-in-out 0.2s;
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      width: 100%;
+    }
+    &__wrapper {
+      position: relative;
+      width: 100%;
       height: 42px;
       overflow-y: auto;
-      padding: 5px 0;
-
-      &:not(.disabled):hover {
-        border: 2px solid var(--color-on-primary-variant);
-      }
-
-      &:not(.disabled):active {
-        border: 2px solid var(--color-primary);
-      }
-
-      &.invalid {
-        border: 2px solid var(--color-error);
-      }
-
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE и Edge */
       &.disabled {
-        color: var(--color-on-primary-disadled);
-        border: 2px solid var(--color-primary-disadled);
-        opacity: 0.8;
-        cursor: not-allowed;
+        overflow-y: hidden;
       }
     }
-  }
 
-  &__label {
-    width: 125px;
-    text-align: right;
-    text-transform: uppercase;
-    color: var(--color-on-surface-dim);
-    pointer-events: none;
-    padding-right: 20px;
+    &__content {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0 5px;
+      gap: 4px;
+      background-color: white;
+      &-wrapper {
+        position: relative;
+        background-color: var(--color-on-surface);
+        border: 2px solid transparent;
+        transition: border-color ease-in-out 0.2s;
+        height: 42px;
+        overflow-y: auto;
+        padding: 5px 0;
 
-    &.required::after {
-      content: '*';
-      display: inline-block;
-      text-rendering: auto;
-      line-height: inherit;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font: 500 14px/21px 'Material Design Icons';
-      color: var(--color-primary);
+        &:not(.disabled):hover {
+          border: 2px solid var(--color-on-primary-variant);
+        }
+
+        &:not(.disabled):active {
+          border: 2px solid var(--color-primary);
+        }
+
+        &.invalid {
+          border: 2px solid var(--color-error);
+        }
+
+        &.disabled {
+          color: var(--color-on-primary-disadled);
+          border: 2px solid var(--color-primary-disadled);
+          opacity: 0.8;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &__label {
+      width: 125px;
+      text-align: right;
+      text-transform: uppercase;
+      color: var(--color-on-surface-dim);
+      pointer-events: none;
+      padding-right: 20px;
+
+      &.required::after {
+        content: '*';
+        display: inline-block;
+        text-rendering: auto;
+        line-height: inherit;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font: 500 14px/21px 'Material Design Icons';
+        color: var(--color-primary);
+      }
+    }
+
+    &__append {
+      padding-right: 5px;
+    }
+
+    &__prepend {
+      padding-left: 5px;
+    }
+
+    &__error {
+      position: absolute;
+      top: 41px;
+      color: var(--color-error);
     }
   }
 
-  &__append {
-    padding-right: 5px;
+  :deep(.df-field-container) {
+    padding: 0;
   }
 
-  &__prepend {
-    padding-left: 5px;
+  :deep(.df-field-container__content) {
+    height: 39px;
   }
-
-  &__error {
-    position: absolute;
-    top: 41px;
-    color: var(--color-error);
-  }
-}
-
-:deep(.df-field-container) {
-  padding: 0;
-}
-
-:deep(.df-field-container__content) {
-  height: 39px;
-}
 </style>

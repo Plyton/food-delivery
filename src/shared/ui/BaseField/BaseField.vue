@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import type { FieldProps, FieldEmits } from '../../types/Field';
-import { BaseButton, IconClose } from '@/shared/ui';
-import { useModifier, type Modifiers } from './useModifier.ts';
+  import type { FieldProps, FieldEmits } from '../../types/Field';
+  import { BaseButton, IconClose } from '@/shared/ui';
+  import { useModifier, type Modifiers } from './useModifier.ts';
 
-defineProps<FieldProps>();
-const emit = defineEmits<FieldEmits>();
-const [modelValue, modelModifiers] = defineModel<string, Modifiers>({
-  set(value) {
-    return useModifier(value, modelModifiers);
+  defineProps<FieldProps>();
+  const emit = defineEmits<FieldEmits>();
+  const [modelValue, modelModifiers] = defineModel<string, Modifiers>({
+    set(value) {
+      return useModifier(value, modelModifiers);
+    },
+  });
+
+  function handleInput(evt: Event): void {
+    emit('input', (evt.target as HTMLInputElement).value);
   }
-});
 
-function handleInput(evt: Event): void {
-  emit('input', (evt.target as HTMLInputElement).value);
-}
+  function handleChange(evt: Event): void {
+    emit('change', (evt.target as HTMLInputElement).value);
+  }
 
-function handleChange(evt: Event): void {
-  emit('change', (evt.target as HTMLInputElement).value);
-}
+  function handleFocus(evt: Event): void {
+    emit('focus', evt);
+  }
 
-function handleFocus(evt: Event): void {
-  emit('focus', evt);
-}
-
-function clearValue(): void {
-  modelValue.value = '';
-}
+  function clearValue(): void {
+    modelValue.value = '';
+  }
 </script>
 
 <template>
@@ -90,73 +90,73 @@ function clearValue(): void {
 </template>
 
 <style lang="scss" scoped>
-.df-field {
-  padding-bottom: 20px;
-  &-container {
-    position: relative;
-  }
-
-  &-wrap {
-    position: relative;
-    background-color: var(--color-on-surface);
-    border: 2px solid transparent;
-    transition: border-color ease-in-out 0.2s;
-
-    &:not(.disabled):hover {
-      border: 2px solid var(--color-on-primary-variant);
+  .df-field {
+    padding-bottom: 20px;
+    &-container {
+      position: relative;
     }
 
-    &:not(.disabled):active {
-      border: 2px solid var(--color-primary);
+    &-wrap {
+      position: relative;
+      background-color: var(--color-on-surface);
+      border: 2px solid transparent;
+      transition: border-color ease-in-out 0.2s;
+
+      &:not(.disabled):hover {
+        border: 2px solid var(--color-on-primary-variant);
+      }
+
+      &:not(.disabled):active {
+        border: 2px solid var(--color-primary);
+      }
+
+      &.invalid {
+        border: 2px solid var(--color-error);
+      }
+
+      &.disabled {
+        color: var(--color-on-primary-disadled);
+        border: 2px solid var(--color-primary-disadled);
+        opacity: 0.8;
+      }
     }
 
-    &.invalid {
-      border: 2px solid var(--color-error);
+    &__content {
+      padding: 0 5px;
     }
 
-    &.disabled {
-      color: var(--color-on-primary-disadled);
-      border: 2px solid var(--color-primary-disadled);
-      opacity: 0.8;
+    &__input {
+      height: 38px;
+      width: 100%;
+    }
+
+    &__label {
+      text-align: right;
+      height: 100%;
+      text-transform: uppercase;
+      color: var(--color-on-surface-dim);
+      pointer-events: none;
+      white-space: nowrap;
+
+      &.required::after {
+        content: '*';
+        display: inline-block;
+        color: var(--color-primary);
+      }
+    }
+
+    &__append {
+      padding-right: 5px;
+    }
+
+    &__prepend {
+      padding-left: 5px;
+    }
+
+    &__error {
+      position: absolute;
+      top: 40px;
+      color: var(--color-error);
     }
   }
-
-  &__content {
-    padding: 0 5px;
-  }
-
-  &__input {
-    height: 38px;
-    width: 100%;
-  }
-
-  &__label {
-    text-align: right;
-    height: 100%;
-    text-transform: uppercase;
-    color: var(--color-on-surface-dim);
-    pointer-events: none;
-    white-space: nowrap;
-
-    &.required::after {
-      content: '*';
-      display: inline-block;
-      color: var(--color-primary);
-    }
-  }
-
-  &__append {
-    padding-right: 5px;
-  }
-
-  &__prepend {
-    padding-left: 5px;
-  }
-
-  &__error {
-    position: absolute;
-    top: 40px;
-    color: var(--color-error);
-  }
-}
 </style>

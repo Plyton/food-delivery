@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { utils } from '@/shared/lib';
+  import { utils } from '@/shared/lib';
 
-defineOptions({
-  name: 'ContactsPage',
-});
+  defineOptions({
+    name: 'ContactsPage',
+  });
 </script>
 
 <template>

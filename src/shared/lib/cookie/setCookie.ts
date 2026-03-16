@@ -6,7 +6,7 @@ export function setCookie(
     path?: string;
     domain?: string;
     secure?: boolean;
-  } = {}
+  } = {},
 ) {
   const { expires, path = '/', domain, secure } = options;
 

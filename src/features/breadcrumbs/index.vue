@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { useBreadcrumbs } from './model/useBreadcrumbs';
-import BreadcrumbList from './ui/BreadcrumbList.vue';
+  import { useBreadcrumbs } from './model/useBreadcrumbs';
+  import BreadcrumbList from './ui/BreadcrumbList.vue';
 
-defineOptions({
-    name: 'NavigationBreadcrumbs'
-  }
-);
+  defineOptions({
+    name: 'NavigationBreadcrumbs',
+  });
 
-const { breadcrumbs, visible, title } = useBreadcrumbs();
+  const { breadcrumbs, visible, title } = useBreadcrumbs();
 </script>
 
 <template>
@@ -28,9 +27,11 @@ const { breadcrumbs, visible, title } = useBreadcrumbs();
 </template>
 
 <style lang="scss">
-.breadcrumbs {
-  &__header, &__link, &__separator {
-    color: var(--color-on-surface);
+  .breadcrumbs {
+    &__header,
+    &__link,
+    &__separator {
+      color: var(--color-on-surface);
+    }
   }
-}
 </style>

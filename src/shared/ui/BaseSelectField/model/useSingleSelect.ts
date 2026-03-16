@@ -32,9 +32,7 @@ export function useSingleSelect(
         return;
       }
 
-      const option = props.options.find(
-        (o) => o[props.optionId!] === modelValue.value
-      );
+      const option = props.options.find((o) => o[props.optionId!] === modelValue.value);
 
       if (option) {
         localValue.value = option[props.optionName!].toString();
@@ -46,9 +44,9 @@ export function useSingleSelect(
   const localOptions = computed<Option[]>(() => {
     return !props.remotely
       ? props.options.filter((option: Option) => {
-        const optionName: keyof Option = option[props.optionName!];
-        return optionName?.toString().toLowerCase().indexOf(inputValue.value.toLowerCase()) >= 0;
-      })
+          const optionName: keyof Option = option[props.optionName!];
+          return optionName?.toString().toLowerCase().indexOf(inputValue.value.toLowerCase()) >= 0;
+        })
       : remotelyOptions.value;
   });
 
@@ -64,9 +62,7 @@ export function useSingleSelect(
     if (typeof modelValue.value === 'object') {
       option = modelValue.value;
     } else {
-      option = props.options.find(
-        (o) => o[props.optionId!] === modelValue.value
-      );
+      option = props.options.find((o) => o[props.optionId!] === modelValue.value);
     }
 
     localValue.value = option ? option[props.optionName!].toString() : '';

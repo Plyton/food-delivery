@@ -3,15 +3,18 @@
   import { AddToCart, ProductSort, useSortProducts } from '@/features';
 
   defineOptions({
-    name: 'ProductList'
+    name: 'ProductList',
   });
 
-  const props = withDefaults(defineProps<{
-    items: ProductI[];
-    sort?: boolean;
-  }>(), {
-    sort: true
-  });
+  const props = withDefaults(
+    defineProps<{
+      items: ProductI[];
+      sort?: boolean;
+    }>(),
+    {
+      sort: true,
+    },
+  );
 
   const { sortType, sortedProducts } = useSortProducts(props.items);
 </script>

@@ -5,7 +5,7 @@ interface Props {
   optionId?: string | number;
   optionName?: string;
   multiple?: boolean;
-  remotely?: boolean,
+  remotely?: boolean;
   returnValue?: string;
   searchFn?: (value: string) => Promise<Option[]>;
 }

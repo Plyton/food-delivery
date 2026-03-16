@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ChipEmits, ChipProps } from './types';
-defineProps<ChipProps>();
-defineEmits<ChipEmits>();
+  import type { ChipEmits, ChipProps } from './types';
+  defineProps<ChipProps>();
+  defineEmits<ChipEmits>();
 </script>
 
 <template>
@@ -23,40 +23,40 @@ defineEmits<ChipEmits>();
 </template>
 
 <style scoped lang="scss">
-.df-chip {
-  padding: 4px 10px;
-  color: var(--color-on-primary);
-  background-color: var(--color-primary);
-  border-radius: 100px;
-  //white-space: nowrap;
-  cursor: pointer;
-
-  &.active {
-    background-color: var(--color-on-primary-variant);
-  }
-  &.disabled {
-    color: var(--color-on-primary-disadled);
-    cursor: not-allowed;
-  }
-
-  &__close {
-    position: relative;
-    border-radius: 100%;
-    padding: 0 5px;
-    color: var(--color-text);
-    font-weight: bold;
-    border: none;
+  .df-chip {
+    padding: 4px 10px;
+    color: var(--color-on-primary);
+    background-color: var(--color-primary);
+    border-radius: 100px;
+    //white-space: nowrap;
     cursor: pointer;
-    &:not(:disabled):hover {
-      transform: scale(1.1);
+
+    &.active {
+      background-color: var(--color-on-primary-variant);
     }
-    &:disabled {
+    &.disabled {
+      color: var(--color-on-primary-disadled);
       cursor: not-allowed;
     }
-    & > span {
-      position: absolute;
-      top: -10px;
+
+    &__close {
+      position: relative;
+      border-radius: 100%;
+      padding: 0 5px;
+      color: var(--color-text);
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      &:not(:disabled):hover {
+        transform: scale(1.1);
+      }
+      &:disabled {
+        cursor: not-allowed;
+      }
+      & > span {
+        position: absolute;
+        top: -10px;
+      }
     }
   }
-}
 </style>

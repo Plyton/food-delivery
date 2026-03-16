@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { BaseButton, IconCard } from '@/shared/ui';
-import { useAddToCart } from './model/useAddToCart.ts';
+  import { BaseButton, IconCard } from '@/shared/ui';
+  import { useAddToCart } from './model/useAddToCart.ts';
 
-defineOptions({
-  name: 'AddToCart',
-});
+  defineOptions({
+    name: 'AddToCart',
+  });
 
-const props = defineProps<{
-  productId: string | number;
-}>();
+  const props = defineProps<{
+    productId: string | number;
+  }>();
 
-const { addToCart } = useAddToCart();
+  const { addToCart } = useAddToCart();
 
-function handleClick() {
-  addToCart(props.productId);
-}
+  function handleClick() {
+    addToCart(props.productId);
+  }
 </script>
 
 <template>

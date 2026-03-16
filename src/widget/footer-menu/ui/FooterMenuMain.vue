@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NavMenu, footerMenu } from '@/features';
-import { BaseLogoMenu } from '@/shared/ui';
+  import { NavMenu, footerMenu } from '@/features';
+  import { BaseLogoMenu } from '@/shared/ui';
 </script>
 
 <template>

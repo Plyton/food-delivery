@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { APP_TEL, SUPPORT_EMAIL } from '@/shared/config';
-import { utils } from '@/shared/lib';
+  import { APP_TEL, SUPPORT_EMAIL } from '@/shared/config';
+  import { utils } from '@/shared/lib';
 
-const telRaw: string = utils.formatPhoneToRaw(APP_TEL);
+  const telRaw: string = utils.formatPhoneToRaw(APP_TEL);
 </script>
 
 <template>
@@ -25,9 +25,9 @@ const telRaw: string = utils.formatPhoneToRaw(APP_TEL);
 </template>
 
 <style scoped lang="scss">
- .app-menu-footer__contact {
-   & > a {
-     color: var(--color-on-surface);
-   }
- }
+  .app-menu-footer__contact {
+    & > a {
+      color: var(--color-on-surface);
+    }
+  }
 </style>

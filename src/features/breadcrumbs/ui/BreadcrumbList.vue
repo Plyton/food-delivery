@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import type { BreadcrumbItem } from '../model/types';
+  import { RouterLink } from 'vue-router';
+  import type { BreadcrumbItem } from '../model/types';
 
-defineProps<{
-  items: BreadcrumbItem[];
-}>();
+  defineProps<{
+    items: BreadcrumbItem[];
+  }>();
 </script>
 
 <template>

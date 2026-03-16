@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { FieldProps, FieldEmits } from '../../types/Field';
-import BaseField from '../BaseField/BaseField.vue';
+  import type { FieldProps, FieldEmits } from '../../types/Field';
+  import BaseField from '../BaseField/BaseField.vue';
 
-const props = withDefaults(defineProps<FieldProps>(), {
-  type: 'text',
-});
-const emit = defineEmits<FieldEmits>();
-const modelValue = defineModel<string>();
+  const props = withDefaults(defineProps<FieldProps>(), {
+    type: 'text',
+  });
+  const emit = defineEmits<FieldEmits>();
+  const modelValue = defineModel<string>();
 
-function handleInput(value: string): void {
-  emit('update:modelValue', value);
-}
+  function handleInput(value: string): void {
+    emit('update:modelValue', value);
+  }
 
-function handleChange(value: string): void {
-  emit('change', value);
-}
+  function handleChange(value: string): void {
+    emit('change', value);
+  }
 </script>
 
 <template>

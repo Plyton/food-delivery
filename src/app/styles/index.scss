@@ -30,9 +30,9 @@
     pointer-events: none;
     z-index: 0;
     background: radial-gradient(
-        ellipse at left center, /* ← смещаем центр влево */
-        rgba(0, 0, 0, 0) 30%, /* ← центр светлый */
-        rgba(0, 0, 0, 0.8) 100% /* → затемнение к правому краю */
+      ellipse at left center,
+      /* ← смещаем центр влево */ rgba(0, 0, 0, 0) 30%,
+      /* ← центр светлый */ rgba(0, 0, 0, 0.8) 100% /* → затемнение к правому краю */
     );
   }
 

@@ -8,9 +8,7 @@
     fill-rule="evenodd"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <desc>
-      Created with Pixso.
-    </desc>
+    <desc>Created with Pixso.</desc>
     <defs />
     <path
       id="Vector"

@@ -1,1 +1,1 @@
-export {default as FooterMenu} from './index.vue';
+export { default as FooterMenu } from './index.vue';

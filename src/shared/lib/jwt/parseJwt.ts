@@ -1,4 +1,4 @@
-import {jwt} from '@/shared/lib';
+import { jwt } from '@/shared/lib';
 import type { JwtHeader, JwtPayload } from '@/shared/lib/jwt/types';
 
 export function parseJwt(token: string): { header: JwtHeader; payload: JwtPayload } | null {

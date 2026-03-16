@@ -31,10 +31,12 @@ export default defineConfigWithVueTs(
       quotes: ['error', 'single'],
       'no-trailing-spaces': 2,
       'eol-last': ['error', 'always'],
-      'no-multiple-empty-lines':  ['error', { 'max': 1, 'maxEOF': 0 }],
+      'no-multiple-empty-lines': ['error', {
+        'max': 1, 'maxEOF': 0
+      }],
       'vue/max-len': ['error', {
         code: 120,
-        template: 120,
+        template: 120
       }],
       'import/order': [
         'error',
@@ -60,7 +62,9 @@ export default defineConfigWithVueTs(
             'caseInsensitive': true
           }
         }
-      ]
+      ],
+      // правила для фигурных скобок
+      'object-curly-spacing': ['error', 'always'],
     },
     settings: {
       'import/resolver': {
@@ -74,7 +78,7 @@ export default defineConfigWithVueTs(
 
   {
     ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['src/**/__tests__/*']
   },
-  ...pluginOxlint.configs['flat/recommended'],
+  ...pluginOxlint.configs['flat/recommended']
 );

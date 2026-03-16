@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { APP_NAME } from '../../config';
+  import { APP_NAME } from '../../config';
 </script>
 
 <template>

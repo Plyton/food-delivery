@@ -14,11 +14,13 @@ export function useMultipleSelect(
   props: Pick<FieldProps, 'disabled'> & Pick<Required<SelectFieldProps>, 'optionId' | 'optionName'>,
   emit: (event: string, ...args: unknown[]) => void,
   selectRef: Ref<ComponentPublicInstance | null>,
-  modelMultiple: Ref<Option[]>
+  modelMultiple: Ref<Option[]>,
 ): MultipleSelectI {
   function checkMultipleSelect(option: Option): boolean {
     if (!modelMultiple.value.length) return false;
-    return modelMultiple.value.some((val: Option) => val[props.optionId] === option[props.optionId]);
+    return modelMultiple.value.some(
+      (val: Option) => val[props.optionId] === option[props.optionId],
+    );
   }
 
   function handleUpdateClose(id: string | number): void {
@@ -27,7 +29,7 @@ export function useMultipleSelect(
     modelMultiple.value.splice(ind, 1);
   }
 
-   function handleMultipleSelect(option: Option): void {
+  function handleMultipleSelect(option: Option): void {
     const findOption = modelMultiple.value.find(
       (val) => val[props.optionId] === option[props.optionId],
     );
@@ -38,7 +40,9 @@ export function useMultipleSelect(
     }
 
     void nextTick(() => {
-      const selectContainerEl = selectRef.value as ComponentPublicInstance<typeof BaseSelectFieldMultiple>;
+      const selectContainerEl = selectRef.value as ComponentPublicInstance<
+        typeof BaseSelectFieldMultiple
+      >;
       selectContainerEl.selectMultipleWrapperRef.scrollTo({ top: 0, behavior: 'smooth' });
     });
 

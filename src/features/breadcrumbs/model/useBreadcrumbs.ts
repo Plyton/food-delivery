@@ -18,22 +18,17 @@ export const useBreadcrumbs = (): UseBreadcrumbsReturn => {
       return;
     }
 
-    const result: BreadcrumbItem[] = [
-      { name: 'Главная', path: '/' }
-    ];
+    const result: BreadcrumbItem[] = [{ name: 'Главная', path: '/' }];
 
     for (const record of route.matched) {
       const resolver = record.meta.breadcrumb;
       if (!resolver) continue;
 
-      const name =
-        typeof resolver === 'function'
-          ? await resolver(route)
-          : resolver;
+      const name = typeof resolver === 'function' ? await resolver(route) : resolver;
 
       result.push({
         name,
-        path: record.path.includes(':') ? route.path : record.path
+        path: record.path.includes(':') ? route.path : record.path,
       });
     }
 
@@ -45,7 +40,7 @@ export const useBreadcrumbs = (): UseBreadcrumbsReturn => {
     () => {
       void buildBreadcrumbs();
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   const visible = computed<boolean>(() => items.value.length > 0);

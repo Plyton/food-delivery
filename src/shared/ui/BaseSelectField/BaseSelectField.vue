@@ -1,75 +1,71 @@
 <script setup lang="ts">
-import { useDebounceFn } from '@vueuse/core';
-import { ref, useTemplateRef, type ComponentPublicInstance } from 'vue';
-import type { SelectFieldProps } from './types';
-import type { Option } from '../../types';
-import type { FieldEmits, FieldProps } from '../../types/Field';
-import { IconArrow, BaseButton, IconClose } from '@/shared/ui';
-import BaseSelectFieldMultiple from './BaseSelectFieldMultiple.vue';
-import BaseField from '../BaseField/BaseField.vue';
-import { useDropdown } from './model/useDropdown.ts';
-import { useMultipleSelect } from './model/useMultipleSelect.ts';
-import { useSingleSelect } from './model/useSingleSelect.ts';
+  import { useDebounceFn } from '@vueuse/core';
+  import { ref, useTemplateRef, type ComponentPublicInstance } from 'vue';
+  import type { SelectFieldProps } from './types';
+  import type { Option } from '../../types';
+  import type { FieldEmits, FieldProps } from '../../types/Field';
+  import { IconArrow, BaseButton, IconClose } from '@/shared/ui';
+  import BaseSelectFieldMultiple from './BaseSelectFieldMultiple.vue';
+  import BaseField from '../BaseField/BaseField.vue';
+  import { useDropdown } from './model/useDropdown.ts';
+  import { useMultipleSelect } from './model/useMultipleSelect.ts';
+  import { useSingleSelect } from './model/useSingleSelect.ts';
 
-const props = withDefaults(defineProps<FieldProps & SelectFieldProps>(), {
-  optionId: 'id',
-  optionName: 'name',
-  options: () => [],
-  searchFn: () => Promise.resolve([])
-});
+  const props = withDefaults(defineProps<FieldProps & SelectFieldProps>(), {
+    optionId: 'id',
+    optionName: 'name',
+    options: () => [],
+    searchFn: () => Promise.resolve([]),
+  });
 
-const emit = defineEmits<FieldEmits>();
+  const emit = defineEmits<FieldEmits>();
 
-const listTarget = ref<HTMLDivElement | null>(null);
+  const listTarget = ref<HTMLDivElement | null>(null);
 
-const selectRef = useTemplateRef<ComponentPublicInstance>('select');
+  const selectRef = useTemplateRef<ComponentPublicInstance>('select');
 
-const modelValue = defineModel<Option | string | number>();
-// для v-model:multiple-select обязательно передать массив и использовать multiple prop
-const modelMultiple = defineModel<Option[]>('multiple-select', { default: [] });
+  const modelValue = defineModel<Option | string | number>();
+  // для v-model:multiple-select обязательно передать массив и использовать multiple prop
+  const modelMultiple = defineModel<Option[]>('multiple-select', { default: [] });
 
-const {
-  checkMultipleSelect,
-  handleMultipleSelect,
-  handleUpdateClose
-} = useMultipleSelect(
-  props,
-  emit as (event: string, ...args: unknown[]) => void,
-  selectRef,
-  modelMultiple
-);
+  const { checkMultipleSelect, handleMultipleSelect, handleUpdateClose } = useMultipleSelect(
+    props,
+    emit as (event: string, ...args: unknown[]) => void,
+    selectRef,
+    modelMultiple,
+  );
 
-const {
-  inputValue,
-  localValue,
-  remotelyOptions,
-  localOptions,
-  syncLocalFromModel,
-  checkSelect,
-  clearValue,
-  setReturnValue
-} = useSingleSelect(props, modelValue);
+  const {
+    inputValue,
+    localValue,
+    remotelyOptions,
+    localOptions,
+    syncLocalFromModel,
+    checkSelect,
+    clearValue,
+    setReturnValue,
+  } = useSingleSelect(props, modelValue);
 
-const {
-  isOpen: isExpand,
-  toggle: expand,
-  open: handleFocus
-} = useDropdown(selectRef, props.disabled, syncLocalFromModel);
+  const {
+    isOpen: isExpand,
+    toggle: expand,
+    open: handleFocus,
+  } = useDropdown(selectRef, props.disabled, syncLocalFromModel);
 
-function handleSelect(option: Option): void {
-  modelValue.value = setReturnValue(option);
-  localValue.value = option[props.optionName].toString();
-  isExpand.value = !isExpand.value;
-}
+  function handleSelect(option: Option): void {
+    modelValue.value = setReturnValue(option);
+    localValue.value = option[props.optionName].toString();
+    isExpand.value = !isExpand.value;
+  }
 
-async function handleInput(evt: string): Promise<void> {
-  if (!props.multiple) inputValue.value = evt;
-  if (!inputValue.value) modelValue.value = undefined;
-  if (props.remotely) remotelyOptions.value = await debouncedGetDataRemotely(evt);
-  emit('input', evt);
-}
+  async function handleInput(evt: string): Promise<void> {
+    if (!props.multiple) inputValue.value = evt;
+    if (!inputValue.value) modelValue.value = undefined;
+    if (props.remotely) remotelyOptions.value = await debouncedGetDataRemotely(evt);
+    emit('input', evt);
+  }
 
-const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
+  const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
 </script>
 
 <template>
@@ -176,65 +172,65 @@ const debouncedGetDataRemotely = useDebounceFn(props.searchFn, 450);
 </template>
 
 <style scoped lang="scss">
-.df-select {
-  position: relative;
+  .df-select {
+    position: relative;
 
-  &-list {
-    overflow: auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 42px;
-    background-color: var(--color-on-surface);
-    border: 1px solid var(--color-primary);
-    z-index: var(--index-2);
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
-    max-height: 250px;
+    &-list {
+      overflow: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 42px;
+      background-color: var(--color-on-surface);
+      border: 1px solid var(--color-primary);
+      z-index: var(--index-2);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
+      max-height: 250px;
 
-    &.invalid {
-      border: 2px solid var(--color-error);
+      &.invalid {
+        border: 2px solid var(--color-error);
+      }
     }
-  }
 
-  &__option {
-    padding: 10px;
-    cursor: pointer;
-    color: var(--color-text);
-    transition: background-color 0.25s;
-    white-space: normal;
+    &__option {
+      padding: 10px;
+      cursor: pointer;
+      color: var(--color-text);
+      transition: background-color 0.25s;
+      white-space: normal;
 
-    &:hover,
-    &.selected {
-      background-color: var(--color-on-primary-variant);
-      color: var(--color-on-primary);
+      &:hover,
+      &.selected {
+        background-color: var(--color-on-primary-variant);
+        color: var(--color-on-primary);
 
-      &:hover {
-        background-color: var(--color-primary);
+        &:hover {
+          background-color: var(--color-primary);
+        }
+      }
+    }
+
+    &__empty {
+      color: var(--color-error);
+      text-align: center;
+    }
+
+    &__icon {
+      transition: transform 0.25s ease-in-out !important;
+      margin-right: 6px;
+
+      &.rotate {
+        transform: rotate(180deg);
+      }
+
+      &.multiple {
+        position: absolute;
+        right: 5px;
+      }
+
+      &.disabled {
+        cursor: not-allowed;
       }
     }
   }
-
-  &__empty {
-    color: var(--color-error);
-    text-align: center;
-  }
-
-  &__icon {
-    transition: transform 0.25s ease-in-out !important;
-    margin-right: 6px;
-
-    &.rotate {
-      transform: rotate(180deg);
-    }
-
-    &.multiple {
-      position: absolute;
-      right: 5px;
-    }
-
-    &.disabled {
-      cursor: not-allowed;
-    }
-  }
-}
 </style>

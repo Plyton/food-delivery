@@ -7,6 +7,7 @@ export function getDaysBetweenDates(startDate: Date, endDate: Date): number {
 export function calcTimeZone(): string {
   const timezoneOffset = new Date().getTimezoneOffset();
   const offset = Math.abs(timezoneOffset);
-  return `${timezoneOffset < 0 ? '+' : '-'}${(`00${Math.floor(offset / 60)}`)
-    .slice(-2)}:${(`00${offset % 60}`).slice(-2)}`;
+  return `${timezoneOffset < 0 ? '+' : '-'}${`00${Math.floor(offset / 60)}`.slice(
+    -2,
+  )}:${`00${offset % 60}`.slice(-2)}`;
 }

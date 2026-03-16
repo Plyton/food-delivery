@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { bakeryProduct } from '@/entities';
-import { ProductList } from '@/widget';
+  import { bakeryProduct } from '@/entities';
+  import { ProductList } from '@/widget';
 
   defineOptions({
-    name: 'BakeryPage'
+    name: 'BakeryPage',
   });
 </script>
 

@@ -10,7 +10,5 @@ export function getTimeByDate(date: Date): string {
 }
 
 export function monthStringTransformWordEnding(month: string): string {
-  return month[month.length - 1] === 'т'
-    ? `${month}а`
-    : `${month.slice(0, month.length - 1)}я`;
+  return month[month.length - 1] === 'т' ? `${month}а` : `${month.slice(0, month.length - 1)}я`;
 }

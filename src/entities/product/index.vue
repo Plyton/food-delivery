@@ -5,15 +5,12 @@
   import { formatNumber } from '@/shared/lib/utils';
 
   defineOptions({
-    name: 'ProductCard'
+    name: 'ProductCard',
   });
 
   const props = defineProps<ProductPropsT>();
 
-  const cardClass = computed(() => [
-    'product-card',
-    `product-card--${props.variant ?? 'default'}`
-  ]);
+  const cardClass = computed(() => ['product-card', `product-card--${props.variant ?? 'default'}`]);
 </script>
 
 <template>
@@ -29,9 +26,7 @@
         {{ product.title }}
       </h2>
 
-      <span class="product-card__weight text-sm">
-        {{ product.weight }} {{ WEIGHT_UNIT }}
-      </span>
+      <span class="product-card__weight text-sm"> {{ product.weight }} {{ WEIGHT_UNIT }} </span>
 
       <p class="product-card__des">
         {{ product.des }}
@@ -121,7 +116,7 @@
           position: absolute;
           top: 70%;
           left: 5%;
-          background-image: url("./assets/hero-container-product.png");
+          background-image: url('./assets/hero-container-product.png');
           padding: 40px;
           color: var(--color-on-surface);
           max-width: 355px;
