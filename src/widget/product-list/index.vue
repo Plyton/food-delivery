@@ -40,7 +40,7 @@
         :product="product"
       >
         <template #action="{ item }">
-          <AddToCart :product-id="item.id" />
+          <AddToCart :product="item" />
         </template>
       </ProductCard>
     </div>

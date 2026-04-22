@@ -34,7 +34,7 @@
       <IconArrowLeft v-if="type === 'arrow-left'" />
       <span
         v-if="$slots.default && !(type === 'arrow-right' || type === 'arrow-left')"
-        class="df-button__text text-sm-bold w-full"
+        class="df-button__text text-sm-bold"
       >
         <slot />
       </span>

@@ -14,6 +14,12 @@ export const routes: Array<RouteRecordRaw> = [
     meta: { layout: 'main', breadcrumb: 'Тест' },
   },
   {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('@/pages/CartPage/index.vue'),
+    meta: { title: 'Корзина', breadcrumb: 'Корзина' },
+  },
+  {
     path: '/hot/hot-dishes',
     name: 'HotDishes',
     component: () => import('@/pages/HotDishesPage/index.vue'),

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import type { ProductI } from '@/entities';
   import { BaseButton, IconCard } from '@/shared/ui';
   import { useAddToCart } from './model/useAddToCart.ts';
 
@@ -7,13 +8,13 @@
   });
 
   const props = defineProps<{
-    productId: string | number;
+    product: ProductI;
   }>();
 
   const { addToCart } = useAddToCart();
 
   function handleClick() {
-    addToCart(props.productId);
+    addToCart(props.product);
   }
 </script>
 
