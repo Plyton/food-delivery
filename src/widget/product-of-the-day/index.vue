@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ProductCard, productOfTheDay } from '@/entities';
-import { AddToCart } from '@/features';
+  import { ProductCard, productOfTheDay } from '@/entities';
+  import { AddToCart } from '@/features';
 
-defineOptions({
-  name: 'ProductOfTheDay',
-});
-
+  defineOptions({
+    name: 'ProductOfTheDay',
+  });
 </script>
 
 <template>
@@ -14,8 +13,8 @@ defineOptions({
       :product="productOfTheDay"
       variant="hero"
     >
-      <template #action="{ item } ">
-        <AddToCart :product-id="item.id" />
+      <template #action="{ item }">
+        <AddToCart :product="item" />
       </template>
     </ProductCard>
   </section>

@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import type { MenuItem } from './model/types.ts';
-import { useMenu } from './hook/useMenu.ts';
-import NavMenuItem from './ui/NavMenuItem.vue';
+  import type { MenuItem } from './model/types';
+  import { useMenu } from './hook/useMenu.ts';
+  import NavMenuItem from './ui/NavMenuItem.vue';
 
-defineOptions({
-  name: 'NavMenu',
-});
+  defineOptions({
+    name: 'NavMenu',
+  });
 
-const props = withDefaults(defineProps<{
-  menu: MenuItem[];
-  appearance?: 'default' | 'footer';
-  areaLabel?: string;
-}>(), {
-  appearance: 'default',
-  areaLabel: '',
-  }
-);
+  const props = withDefaults(
+    defineProps<{
+      menu: MenuItem[];
+      appearance?: 'default' | 'footer';
+      areaLabel?: string;
+    }>(),
+    {
+      appearance: 'default',
+      areaLabel: '',
+    },
+  );
 
-const { menuRef, toggle, isOpen } = useMenu<HTMLElement>();
+  const { menuRef, toggle, isOpen } = useMenu<HTMLElement>();
 </script>
 
 <template>
@@ -40,19 +42,19 @@ const { menuRef, toggle, isOpen } = useMenu<HTMLElement>();
 </template>
 
 <style lang="scss" scoped>
-.app-menu-item {
-  position: relative;
+  .app-menu-item {
+    position: relative;
 
-  &__list {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-  &--footer {
-    .app-menu-item__list {
-      gap: 30px;
+    &--footer {
+      .app-menu-item__list {
+        gap: 30px;
+      }
     }
   }
-}
 </style>

@@ -1,22 +1,26 @@
 <script setup lang="ts">
-import { watch } from 'vue';
-import type { CounterProps } from './types.ts';
-import { BaseButton, IconMinus, IconPlus } from '@/shared/ui';
+  import { watch } from 'vue';
+  import type { CounterProps } from './types';
+  import { BaseButton, IconMinus, IconPlus } from '@/shared/ui';
 
-const props = defineProps<CounterProps>();
-const modelValue = defineModel<number>({default: 0});
+  const props = defineProps<CounterProps>();
+  const modelValue = defineModel<number>({ default: 0 });
 
-watch(modelValue, (newVal) => {
-  if (newVal < 0) modelValue.value = 0;
-},{ immediate: true, once: true });
+  watch(
+    modelValue,
+    (newVal) => {
+      if (newVal < 0) modelValue.value = 0;
+    },
+    { immediate: true, once: true },
+  );
 
-function increment(): void {
-  if(!props.max || modelValue.value < props.max) ++modelValue.value;
-}
+  function increment(): void {
+    if (!props.max || modelValue.value < props.max) ++modelValue.value;
+  }
 
-function decrement(): void {
-  if (modelValue.value > (props.min ?? 0)) --modelValue.value;
-}
+  function decrement(): void {
+    if (modelValue.value > (props.min ?? 0)) --modelValue.value;
+  }
 </script>
 
 <template>
@@ -50,46 +54,46 @@ function decrement(): void {
 </template>
 
 <style scoped lang="scss">
-@mixin counter-box($border-width) {
-  height: 10px;
-  border: solid var(--color-on-surface-dim);
-  border-width: $border-width;
-}
+  @mixin counter-box($border-width) {
+    height: 10px;
+    border: solid var(--color-on-surface-dim);
+    border-width: $border-width;
+  }
 
-@mixin counter-icon($top, $horizontal-pos, $horizontal-value) {
-  position: absolute;
-  top: $top;
-  #{$horizontal-pos}: $horizontal-value;
-  transition: transform 0.2s;
-  cursor: pointer;
-}
+  @mixin counter-icon($top, $horizontal-pos, $horizontal-value) {
+    position: absolute;
+    top: $top;
+    #{$horizontal-pos}: $horizontal-value;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
 
-.df-counter {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding-bottom: 20px;
+  .df-counter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 80px;
 
-  &__box-top {
-    @include counter-box(1px 1px 0 1px);
+    &__box-top {
+      @include counter-box(1px 1px 0 1px);
 
-    &-icon {
-      @include counter-icon(13px, left, -5px);
+      &-icon {
+        @include counter-icon(13px, left, -5px);
+      }
+    }
+
+    &__box-bottom {
+      @include counter-box(0 1px 1px 1px);
+
+      &-icon {
+        @include counter-icon(9px, right, -5px);
+      }
+    }
+
+    &__count {
+      align-self: center;
+      color: var(--color-on-surface);
     }
   }
-
-  &__box-bottom {
-    @include counter-box(0 1px 1px 1px);
-
-    &-icon {
-      @include counter-icon(9px, right, -5px);
-    }
-  }
-
-  &__count {
-    align-self: center;
-    color: var(--color-on-surface);
-  }
-}
 </style>

@@ -18,5 +18,5 @@ export {
   BaseCounter,
   BaseTextareaField,
   BaseExpansionPanel,
-  BaseLogoMenu
+  BaseLogoMenu,
 };

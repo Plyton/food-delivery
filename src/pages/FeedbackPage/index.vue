@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { utils } from '@/shared/lib';
+  import { utils } from '@/shared/lib';
 
-defineOptions({
-  name: 'FeedbackPage',
-});
+  defineOptions({
+    name: 'FeedbackPage',
+  });
 </script>
 
 <template>

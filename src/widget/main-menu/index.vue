@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { NavMenu, mainMenu } from '@/features';
-import { BaseLogoMenu } from '@/shared/ui';
-import MainMenuUser from './ui/MainMenuUser.vue';
+  import { NavMenu, mainMenu } from '@/features';
+  import { BaseLogoMenu } from '@/shared/ui';
+  import MainMenuUser from './ui/MainMenuUser.vue';
 
-defineOptions({
-  name: 'MainMenu',
-});
+  defineOptions({
+    name: 'MainMenu',
+  });
 </script>
 
 <template>
@@ -20,9 +20,9 @@ defineOptions({
 </template>
 
 <style scoped lang="scss">
-.app-menu {
-  padding: 20px;
-  color: var(--color-on-surface);
-  z-index: var(--index-6) !important;
-}
+  .app-menu {
+    padding: 20px;
+    color: var(--color-on-surface);
+    z-index: var(--index-6) !important;
+  }
 </style>

@@ -1,4 +1,4 @@
-import type { MenuItem } from './types.ts';
+import type { MenuItem } from './types';
 
 export const footerMenu = [
   { id: '1', label: 'Обратная связь', to: '/feedback' },

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { NavMenu, legalMenu } from '@/features';
-import { APP_NAME, COPYRIGHT } from '@/shared/config';
-import FooterMenuContacts from './ui/FooterMenuContacts.vue';
-import FooterMenuMain from './ui/FooterMenuMain.vue';
+  import { NavMenu, legalMenu } from '@/features';
+  import { APP_NAME, COPYRIGHT } from '@/shared/config';
+  import FooterMenuContacts from './ui/FooterMenuContacts.vue';
+  import FooterMenuMain from './ui/FooterMenuMain.vue';
 
-defineOptions({
-  name: 'FooterMenu',
-});
+  defineOptions({
+    name: 'FooterMenu',
+  });
 </script>
 
 <template>
@@ -30,14 +30,14 @@ defineOptions({
 </template>
 
 <style scoped lang="scss">
- .app-menu-footer {
-   padding: 40px 20px 20px;
-   background-color: var(--color-on-primary);
-   color: var(--color-on-surface);
-   &__separator {
-     height: 1px;
-     background-color: var(--color-on-surface);
-     opacity: 0.3;
-   }
- }
+  .app-menu-footer {
+    padding: 40px 20px 20px;
+    background-color: var(--color-on-primary);
+    color: var(--color-on-surface);
+    &__separator {
+      height: 1px;
+      background-color: var(--color-on-surface);
+      opacity: 0.3;
+    }
+  }
 </style>

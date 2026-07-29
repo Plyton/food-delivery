@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { utils } from '@/shared/lib';
+  import { utils } from '@/shared/lib';
 
-defineOptions({
-  name: 'StockPage',
-});
+  defineOptions({
+    name: 'StockPage',
+  });
 </script>
 
 <template>
@@ -15,6 +15,4 @@ defineOptions({
   </section>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { saladProduct } from '@/entities';
-import { ProductList } from '@/widget';
+  import { saladProduct } from '@/entities';
+  import { ProductList } from '@/widget';
 
-defineOptions({
-  name: 'SaladsPage',
-});
+  defineOptions({
+    name: 'SaladsPage',
+  });
 </script>
 
 <template>

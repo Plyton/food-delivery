@@ -1,4 +1,4 @@
-import type { MenuItem } from './types.ts';
+import type { MenuItem } from './types';
 
 export const legalMenu = [
   { id: '1', label: 'Политика конфиденциальности', to: '/privacy' },

@@ -5,19 +5,25 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: () => import('@/pages/HomePage/index.vue'),
-    meta: { layout: 'main' }
+    meta: { layout: 'main' },
   },
   {
     path: '/test',
     name: 'Test',
     component: () => import('@/pages/Test/TestPage.vue'),
-    meta: { layout: 'main', breadcrumb: 'Тест' }
+    meta: { layout: 'main', breadcrumb: 'Тест' },
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('@/pages/CartPage/index.vue'),
+    meta: { title: 'Корзина', breadcrumb: 'Корзина' },
   },
   {
     path: '/hot/hot-dishes',
     name: 'HotDishes',
     component: () => import('@/pages/HotDishesPage/index.vue'),
-    meta: { layout: 'main', breadcrumb: 'Горячие блюда', title: 'Горячие блюда' }
+    meta: { layout: 'main', breadcrumb: 'Горячие блюда', title: 'Горячие блюда' },
   },
   {
     path: '/hot/meat',
@@ -89,12 +95,20 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/privacy',
     name: 'Privacy',
     component: () => import('@/pages/PrivacyPage/index.vue'),
-    meta: { layout: 'main', breadcrumb: 'Политика конфиденциальности', title: 'Политика конфиденциальности' },
+    meta: {
+      layout: 'main',
+      breadcrumb: 'Политика конфиденциальности',
+      title: 'Политика конфиденциальности',
+    },
   },
   {
     path: '/terms',
     name: 'Terms',
     component: () => import('@/pages/TermsPage/index.vue'),
-    meta: { layout: 'main', breadcrumb: 'Пользовательское соглашение', title: 'Пользовательское соглашение' },
+    meta: {
+      layout: 'main',
+      breadcrumb: 'Пользовательское соглашение',
+      title: 'Пользовательское соглашение',
+    },
   },
 ];

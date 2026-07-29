@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { drinksProduct } from '@/entities';
-import { ProductList } from '@/widget';
+  import { drinksProduct } from '@/entities';
+  import { ProductList } from '@/widget';
 
-defineOptions({
-  name: 'DrinksPage',
-});
+  defineOptions({
+    name: 'DrinksPage',
+  });
 </script>
 
 <template>
-  <ProductList :items="drinksProduct" />asssssssssssssssssssssssssssssssss
+  <ProductList :items="drinksProduct" />
 </template>

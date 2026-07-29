@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Breadcrumbs } from '@/features';
-import { MainMenu, FooterMenu } from '@/widget';
+  import { Breadcrumbs } from '@/features';
+  import { MainMenu, FooterMenu } from '@/widget';
 
-defineOptions({
-  name: 'MainLayout'
-});
+  defineOptions({
+    name: 'MainLayout',
+  });
 </script>
 
 <template>

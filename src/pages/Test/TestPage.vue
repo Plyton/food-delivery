@@ -1,41 +1,41 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import {
-  BaseButton,
-  BaseRadio,
-  BaseInputField,
-  BaseSelectField,
-  BaseCounter,
-  BaseTextareaField
-} from '@/shared/ui';
+  import { ref } from 'vue';
+  import {
+    BaseButton,
+    BaseRadio,
+    BaseInputField,
+    BaseSelectField,
+    BaseCounter,
+    BaseTextareaField,
+  } from '@/shared/ui';
 
-// import IconClose from '@/shared/components/Icons/IconClose.vue';
+  // import IconClose from '@/shared/components/Icons/IconClose.vue';
 
-const text = ref('sasd');
-const textarea = ref();
-const count = ref(-1);
-const checkbox1 = ref();
-const select = ref();
-const options = ref([
-  { id: 1, name: 'food' },
-  { id: 2, name: 'burger' },
-  { id: 3, name: 'fish' },
-]);
-// function remote(value: string): Promise<{id: number, name: string}[]> {
-//   config arr = [
-//     { id: 1, name: 'food' },
-//     { id: 2, name: 'burger' },
-//     { id: 3, name: 'fish' },
-//   ];
-//   return new Promise(function(resolve, reject) {
-//     config filter = arr.filter(val => val.name.includes(value));
-//     if (filter) {
-//       resolve(filter);
-//     } else {
-//       reject(new Error('error'));
-//     }
-//   });
-// }
+  const text = ref('sasd');
+  const textarea = ref();
+  const count = ref(-1);
+  const checkbox1 = ref();
+  const select = ref();
+  const options = ref([
+    { id: 1, name: 'food' },
+    { id: 2, name: 'burger' },
+    { id: 3, name: 'fish' },
+  ]);
+  // function remote(value: string): Promise<{id: number, name: string}[]> {
+  //   config arr = [
+  //     { id: 1, name: 'food' },
+  //     { id: 2, name: 'burger' },
+  //     { id: 3, name: 'fish' },
+  //   ];
+  //   return new Promise(function(resolve, reject) {
+  //     config filter = arr.filter(val => val.name.includes(value));
+  //     if (filter) {
+  //       resolve(filter);
+  //     } else {
+  //       reject(new Error('error'));
+  //     }
+  //   });
+  // }
 </script>
 
 <template>
@@ -51,9 +51,7 @@ const options = ref([
       :options="options"
       label="Text"
     />
-    <BaseButton>
-      кнопка
-    </BaseButton>
+    <BaseButton> кнопка </BaseButton>
 
     <BaseRadio
       v-model="checkbox1"

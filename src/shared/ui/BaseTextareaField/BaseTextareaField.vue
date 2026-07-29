@@ -1,34 +1,37 @@
 <script lang="ts" setup>
-import { useTemplateRef, watch } from 'vue';
-import type { TextAreaProps } from './types.ts';
-import type { FieldProps } from '../../types/Field.ts';
-import BaseField from '@/shared/ui/BaseField/BaseField.vue';
+  import { useTemplateRef, watch } from 'vue';
+  import type { TextAreaProps } from './types';
+  import type { FieldProps } from '../../types/Field';
+  import BaseField from '@/shared/ui/BaseField/BaseField.vue';
 
-const modelValue = defineModel<string>();
+  const modelValue = defineModel<string>();
 
-const props = withDefaults(defineProps<TextAreaProps & FieldProps>(), {
-  minHeight: '100',
-  maxHeight: '200',
-});
+  const props = withDefaults(defineProps<TextAreaProps & FieldProps>(), {
+    minHeight: '100',
+    maxHeight: '200',
+  });
 
-const textareaRef = useTemplateRef<HTMLTextAreaElement>('textarea');
+  const textareaRef = useTemplateRef<HTMLTextAreaElement>('textarea');
 
-watch(() => modelValue.value, (newValue) => {
-  if (!newValue && textareaRef.value) textareaRef.value.style.height = 'auto';
-});
+  watch(
+    () => modelValue.value,
+    (newValue) => {
+      if (!newValue && textareaRef.value) textareaRef.value.style.height = 'auto';
+    },
+  );
 
-function handleBlur(): void {
-  if (textareaRef.value instanceof HTMLTextAreaElement) {
-    textareaRef.value.scrollTo({top: 0, behavior: 'smooth'});
+  function handleBlur(): void {
+    if (textareaRef.value instanceof HTMLTextAreaElement) {
+      textareaRef.value.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
-}
 
-function handleInput(): void {
-  if (textareaRef.value instanceof HTMLTextAreaElement) {
-    textareaRef.value.style.height = 'auto';
-    textareaRef.value.style.height = `${textareaRef.value.scrollHeight}px`;
+  function handleInput(): void {
+    if (textareaRef.value instanceof HTMLTextAreaElement) {
+      textareaRef.value.style.height = 'auto';
+      textareaRef.value.style.height = `${textareaRef.value.scrollHeight}px`;
+    }
   }
-}
 </script>
 
 <template>
@@ -65,11 +68,11 @@ function handleInput(): void {
 </template>
 
 <style lang="scss" scoped>
-.df-textarea {
-  &__input {
-    width: 100%;
-    resize: none;
-    padding-top: 5px;
+  .df-textarea {
+    &__input {
+      width: 100%;
+      resize: none;
+      padding-top: 5px;
+    }
   }
-}
 </style>

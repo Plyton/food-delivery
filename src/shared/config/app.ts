@@ -6,6 +6,4 @@ const START_YEAR = 2020;
 const CURRENT_YEAR = new Date().getFullYear();
 
 export const COPYRIGHT =
-  START_YEAR === CURRENT_YEAR
-    ? `© ${START_YEAR}`
-    : `© ${START_YEAR}–${CURRENT_YEAR}`;
+  START_YEAR === CURRENT_YEAR ? `© ${START_YEAR}` : `© ${START_YEAR}–${CURRENT_YEAR}`;

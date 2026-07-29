@@ -1,35 +1,46 @@
 <script setup lang="ts">
   import { ProductCard, type ProductI } from '@/entities';
-  import { AddToCart } from '@/features';
+  import { AddToCart, ProductSort, useSortProducts } from '@/features';
 
   defineOptions({
     name: 'ProductList',
   });
 
-  defineProps<{
-    items: ProductI[]
-  }>();
+  const props = withDefaults(
+    defineProps<{
+      items: ProductI[];
+      sort?: boolean;
+    }>(),
+    {
+      sort: true,
+    },
+  );
+
+  const { sortType, sortedProducts } = useSortProducts(props.items);
 </script>
 
 <template>
-  <section class="popular-dishes">
+  <section class="product-list d-flex flex-column">
     <h1
       v-if="$slots.header"
-      class="popular-dishes__header d-flex items-center justify-center text-10xl"
+      class="product-list__header d-flex items-center justify-center text-10xl"
     >
       <slot name="header" />
     </h1>
 
-    <slot name="sort" />
+    <ProductSort
+      v-if="sort"
+      v-model="sortType"
+    />
 
-    <div class="popular-dishes__list">
+    <div class="product-list__list">
       <ProductCard
-        v-for="product of items"
+        v-for="product of sortedProducts"
         :key="product.id"
         :product="product"
       >
         <template #action="{ item }">
-          <AddToCart :product-id="item.id" />
+          <AddToCart :product="item" />
         </template>
       </ProductCard>
     </div>
@@ -37,11 +48,13 @@
 </template>
 
 <style scoped lang="scss">
-  .popular-dishes {
+  .product-list {
     color: var(--color-on-surface);
+
     &__header {
       height: 194px;
     }
+
     &__list {
       display: grid;
       grid-template-columns: repeat(auto-fill, 244px);

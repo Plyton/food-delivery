@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { utils } from '@/shared/lib';
+  import { utils } from '@/shared/lib';
 
-defineOptions({
-  name: 'DeliveryPage',
-});
+  defineOptions({
+    name: 'DeliveryPage',
+  });
 </script>
 
 <template>

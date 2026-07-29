@@ -22,7 +22,7 @@ export const hotDishProducts = [
     id: uuid.uuid(),
     title: 'Долма',
     price: 430,
-    image:  utils.getImage('img/hot-dishes/img3.png'),
+    image: utils.getImage('img/hot-dishes/img3.png'),
     des: 'Невероятно ароматная начинка из рубленого мяса и свежей зелени, завернутая в виноградные листья',
     weight: 350,
   },

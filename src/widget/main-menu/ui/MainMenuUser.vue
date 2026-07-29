@@ -1,14 +1,13 @@
 <script setup lang="ts">
-// todo в будущем сделать feature
-import { shallowRef } from 'vue';
-import type { MenuIcon } from '../model/types.ts';
-import { IconSearch, IconUser, IconCard, BaseButton } from '@/shared/ui';
+  import { shallowRef } from 'vue';
+  import type { MenuIcon } from '../model/types';
+  import { CartButton } from '@/features';
+  import { IconSearch, IconUser, BaseButton } from '@/shared/ui';
 
-const menuIcons = shallowRef<MenuIcon[]>([
-  { component: IconSearch, name: 'search' },
-  { component: IconUser, name: 'user' },
-  { component: IconCard, name: 'card' },
-]);
+  const menuIcons = shallowRef<MenuIcon[]>([
+    { component: IconSearch, name: 'search' },
+    { component: IconUser, name: 'user' },
+  ]);
 </script>
 
 <template>
@@ -22,5 +21,7 @@ const menuIcons = shallowRef<MenuIcon[]>([
         <component :is="icon.component" />
       </template>
     </BaseButton>
+
+    <CartButton />
   </nav>
 </template>
