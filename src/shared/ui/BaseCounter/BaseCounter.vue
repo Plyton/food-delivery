@@ -73,7 +73,7 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-    padding-bottom: 20px;
+    width: 80px;
 
     &__box-top {
       @include counter-box(1px 1px 0 1px);

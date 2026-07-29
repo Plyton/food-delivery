@@ -12,6 +12,7 @@ $button_configuration: (
   button_default--color_disabled: var(--color-on-primary-disadled),
   button_default--border_disabled: 1px solid var(--color-primary-disadled),
   // outline
+  button_outline--background-color_normal: transparent,
   button_outline--color_normal: var(--color-primary),
   button_outline--border_normal: 1px solid var(--color-primary),
   button_outline--color_hover: var(--color-on-primary-variant),

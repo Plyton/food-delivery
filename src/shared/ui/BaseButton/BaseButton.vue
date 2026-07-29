@@ -29,7 +29,7 @@
     type="button"
     @click="handleClick"
   >
-    <span class="df-button__content d-flex items-center">
+    <span class="df-button__content d-flex items-center justify-center">
       <slot name="prepend" />
       <IconArrowLeft v-if="type === 'arrow-left'" />
       <span

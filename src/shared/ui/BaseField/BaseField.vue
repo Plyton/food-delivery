@@ -91,7 +91,6 @@
 
 <style lang="scss" scoped>
   .df-field {
-    padding-bottom: 20px;
     &-container {
       position: relative;
     }

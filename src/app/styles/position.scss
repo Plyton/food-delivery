@@ -20,7 +20,7 @@
 }
 
 @mixin indent($orientation, $rule) {
-  @for $i from 1 through 16 {
+  @for $i from 1 through 20 {
     .#{$orientation}-#{$i} {
       #{$rule}: $i * 2 + px;
     }
@@ -126,6 +126,10 @@
 
   &-end {
     align-items: end;
+  }
+
+  &-baseline {
+    align-items: baseline;
   }
 }
 
