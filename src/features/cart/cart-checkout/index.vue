@@ -1,11 +1,14 @@
 <script setup lang="ts">
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import { useCartStore } from '@/entities';
   import { BaseButton, BaseInputField } from '@/shared/ui';
 
   defineOptions({
     name: 'CartCheckout',
   });
+
+  const router = useRouter();
 
   const cart = useCartStore();
 
@@ -14,7 +17,7 @@
 
 <template>
   <section class="cart-checkout d-flex justify-end w-full">
-    <div class="d-flex flex-column items-start gap-14 w-3">
+    <div class="d-flex flex-column items-start gap-14">
       <div class="d-flex flex-column">
         <div
           class="text-sm mb-3"
@@ -51,7 +54,10 @@
         </div>
 
         <div style="width: 190px">
-          <BaseButton class="w-full">
+          <BaseButton
+            class="w-full"
+            @click="router.push('/checkout')"
+          >
             Оформить заказ
           </BaseButton>
         </div>
@@ -59,3 +65,9 @@
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+  .cart-checkout {
+    padding-right: 80px;
+  }
+</style>

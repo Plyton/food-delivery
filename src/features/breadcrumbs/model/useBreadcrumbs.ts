@@ -27,12 +27,19 @@ export const useBreadcrumbs = (): UseBreadcrumbsReturn => {
       const resolver = record.meta.breadcrumb;
       if (!resolver) continue;
 
-      const name = typeof resolver === 'function' ? await resolver(route) : resolver;
+      const value =
+        typeof resolver === 'function'
+          ? await resolver(route)
+          : resolver;
 
-      result.push({
-        name,
-        path: record.path.includes(':') ? route.path : record.path,
-      });
+      if (Array.isArray(value)) {
+        result.push(...value);
+      } else {
+        result.push({
+          name: value,
+          path: record.path.includes(':') ? route.path : record.path,
+        });
+      }
     }
 
     items.value = result;

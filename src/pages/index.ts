@@ -20,6 +20,24 @@ export const routes: Array<RouteRecordRaw> = [
     meta: { title: 'Корзина', breadcrumb: 'Корзина' },
   },
   {
+    path: '/checkout',
+    name: 'Checkout',
+    component: () => import('@/pages/CheckoutPage/index.vue'),
+    meta: {
+      title: 'Оформление заказа',
+      breadcrumb: () => [
+        {
+          name: 'Корзина',
+          path: '/cart',
+        },
+        {
+          name: 'Оформление заказа',
+          path: '/checkout',
+        },
+      ],
+    },
+  },
+  {
     path: '/hot/hot-dishes',
     name: 'HotDishes',
     component: () => import('@/pages/HotDishesPage/index.vue'),
