@@ -22,9 +22,10 @@
 
       <ul class="cart__body d-flex flex-column gap-5 mb-20">
         <CartRow
-          v-for="item in items"
+          v-for="(item, index) in items"
           :key="item.id"
           :item="item"
+          :loading="index === 0 ? 'eager' : 'lazy'"
         >
           <template #counter="slotProps">
             <slot

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "powershell": "scripts\\hooks\\before-tools.ps1"
+      }
+    ]
+  }
+}

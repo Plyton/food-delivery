@@ -6,3 +6,4 @@ export * from './cart/add-to-cart';
 export * from './cart/remove-cart-item';
 export * from './cart/change-cart-item-count';
 export * from './cart/cart-checkout';
+export * from './checkout-form';

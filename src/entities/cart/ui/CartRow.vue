@@ -5,6 +5,7 @@
 
   defineProps<{
     item: CartI;
+    loading: 'eager' | 'lazy';
   }>();
 </script>
 
@@ -14,6 +15,7 @@
       <img
         :src="item.image"
         :alt="item.title"
+        :loading="loading"
       >
     </div>
 

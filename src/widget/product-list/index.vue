@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { useRoute } from 'vue-router';
   import { ProductCard, type ProductI } from '@/entities';
   import { AddToCart, ProductSort, useSortProducts } from '@/features';
 
@@ -16,7 +17,11 @@
     },
   );
 
+  const route = useRoute();
   const { sortType, sortedProducts } = useSortProducts(props.items);
+
+  const getImageLoading = (index: number): 'eager' | 'lazy' =>
+    route.name === 'Home' || index > 0 ? 'lazy' : 'eager';
 </script>
 
 <template>
@@ -35,9 +40,10 @@
 
     <div class="product-list__list">
       <ProductCard
-        v-for="product of sortedProducts"
+        v-for="(product, index) of sortedProducts"
         :key="product.id"
         :product="product"
+        :loading="getImageLoading(index)"
       >
         <template #action="{ item }">
           <AddToCart :product="item" />

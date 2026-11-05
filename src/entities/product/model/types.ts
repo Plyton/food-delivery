@@ -7,4 +7,8 @@ export interface ProductI {
   weight: number;
 }
 
-export type ProductPropsT = { product: ProductI; variant?: 'default' | 'hero' };
+export type ProductPropsT = {
+  product: ProductI;
+  variant?: 'default' | 'hero';
+  loading?: 'eager' | 'lazy';
+};

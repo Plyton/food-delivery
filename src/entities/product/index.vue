@@ -19,6 +19,7 @@
       class="product-card__image"
       :src="product.image"
       :alt="product.title"
+      :loading="props.loading"
     >
 
     <div class="product-card__container">
